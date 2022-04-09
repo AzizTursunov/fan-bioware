@@ -1,5 +1,5 @@
 from django.test import Client, TestCase
-from ..configs import REVERSE_URL_VS_TEMPLATE
+from fanbioware.utils import BIOWARE_REVERSE_URL_VS_TEMPLATE
 
 
 class BiowareViewsTest(TestCase):
@@ -9,7 +9,7 @@ class BiowareViewsTest(TestCase):
     def test_bioware_pages_uses_correct_templates(self):
         """Checking that URLs use the appropriate templates."""
 
-        for reverse_name, template in REVERSE_URL_VS_TEMPLATE.items():
+        for reverse_name, template in BIOWARE_REVERSE_URL_VS_TEMPLATE.items():
             with self.subTest(reverse_name=reverse_name):
                 response = self.guest_client.get(reverse_name)
                 self.assertTemplateUsed(response, template)

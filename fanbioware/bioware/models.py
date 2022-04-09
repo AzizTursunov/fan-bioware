@@ -1,3 +1,13 @@
 from django.db import models
 
-# Create your models here.
+
+class Games(models.Model):
+    ...
+
+
+class News(models.Model):
+    ...
+
+
+class Openings(models.Model):
+    ...
