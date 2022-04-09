@@ -20,3 +20,10 @@ class URLTest(TestCase):
             response = self.guest_client.get(url)
             with self.subTest(response=response):
                 self.assertEqual(response.status_code, HTTPStatus.OK)
+
+    def test_pages_uses_correct_templates(self):
+        """Checking that URLs use the appropriate templates."""
+        for url, template in self.urls_vs_templates.items():
+            response = self.guest_client.get(url)
+            with self.subTest(response=response):
+                self.assertTemplateUsed(response, template)
