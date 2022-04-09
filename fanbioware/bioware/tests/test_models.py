@@ -1,14 +1,14 @@
 from django.test import TestCase
 from fanbioware.utils import (TestHelpTextMixin, TestVerboseNameMixin,
                               TestFiedlMaxLengthMixin)
-from ..models import Games, News, Openings
+from ..models import Game, News, Openings
 
 
 class ModelFixtures(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.game = Games.objects.create()
+        cls.game = Game.objects.create()
         cls.news = News.objects.create()
         cls.openings = Openings.objects.create()
 
@@ -40,20 +40,20 @@ class GameModelTest(ModelFixtures, TestHelpTextMixin,
             'description': 650
         }
 
-    def test_games_str_method(self):
-        """Checking the method __str__ of the Games model."""
+    def test_game_str_method(self):
+        """Checking the method __str__ of the Game model."""
         self.assertEqual(str(self.game), self.game.title)
 
-    def test_games_model_fields_verbose_name(self):
-        """Checking fields verbose_name of the Games model."""
+    def test_game_model_fields_verbose_name(self):
+        """Checking fields verbose_name of the Game model."""
         super().run_verbose_name_test(self.game)
 
-    def test_games_model_fields_help_text(self):
-        """Checking fields help_text of the Games model."""
+    def test_game_model_fields_help_text(self):
+        """Checking fields help_text of the Game model."""
         super().run_help_text_test(self.game)
 
-    def test_games_model_fields_max_length(self):
-        """Checking maximum length of the Games model fields."""
+    def test_game_model_fields_max_length(self):
+        """Checking maximum length of the Game model fields."""
         super().run_fields_max_len_test(self.game)
 
 
@@ -100,3 +100,48 @@ class NewsModelTest(ModelFixtures, TestHelpTextMixin,
     def test_news_model_fields_max_length(self):
         """Checking maximum length of the News model fields."""
         super().run_fields_max_len_test(self.news)
+
+
+class OpeningsModelTest(ModelFixtures, TestHelpTextMixin,
+                        TestVerboseNameMixin, TestFiedlMaxLengthMixin):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.field_and_verbose_name = {
+            'studio': 'Studio',
+            'team': 'Team',
+            'role': 'Role',
+            'dsecription': 'Description',
+            'remote': 'Remote',
+            'responsibilities': 'Responsibilities',
+            'qualifications': 'Qualifications',
+            'perks': 'Perks'
+        }
+
+        cls.field_and_help_text = {
+            'studio': 'Choose the studio',
+            'team': 'Enter the team',
+            'role': 'Enter the role',
+            'dsecription': 'Enter a description of the opening',
+            'remote': 'Choose the type of employment',
+            'responsibilities': (
+                'Describe the responsibilities '
+                'separated by semicolons'
+            ),
+            'qualifications': (
+                'Describe the responsibilities separated by semicolons'
+            ),
+            'perks': 'Describe the perks separated by semicolons'
+        }
+
+    def test_news_str_method(self):
+        """Checking the method __str__ of the Openings model."""
+        self.assertEqual(str(self.openings), self.openings.role)
+
+    def test_news_model_fields_verbose_name(self):
+        """Checking fields verbose_name of the Openings model."""
+        super().run_verbose_name_test(self.openings)
+
+    def test_news_model_fields_help_text(self):
+        """Checking fields help_text of the Openings model."""
+        super().run_help_text_test(self.openings)

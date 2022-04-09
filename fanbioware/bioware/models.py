@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Games(models.Model):
+class Game(models.Model):
     ...
 
 

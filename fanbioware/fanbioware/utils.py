@@ -1,5 +1,7 @@
 from django.urls import reverse
 
+NEWS_ON_PAGE = 4
+
 BIOWARE_URL_VS_TEMPLATE = {
     '/': 'bioware/index.html',
     '/about/': 'boiware/about.html',
