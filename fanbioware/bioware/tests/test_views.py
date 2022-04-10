@@ -1,4 +1,3 @@
-
 import shutil
 import tempfile
 from django.urls import reverse
@@ -119,24 +118,36 @@ class BiowareViewsTest(TestCase):
     def test_index_page_show_correct_context(self):
         """Checking context passed to the index page."""
         response = self.guest_client.get(reverse('bioware:index'))
-        first_game = response.context['game_list'].object_list[0]
-        first_news = response.context['news_list'].object_list[0]
-        self.assertEqual(response.context['game_list'], self.game_list)
-        self.assertEqual(response.context['news_list'], self.news_list)
-        self.assertTrue(first_game.image)
-        self.assertIn('Test game', first_game.title)
-        self.assertTrue(first_news.image)
-        self.assertIn('Test news', first_news.title)
+        self.assertEqual(
+            list(response.context['game_list']),
+            self.game_list
+        )
+        self.assertEqual(
+            response.context['game_list'].first().title,
+            self.games.first().title
+        )
+        self.assertEqual(
+            response.context['news_list'].first().title,
+            self.news.first().title
+        )
+        self.assertTrue(response.context['game_list'].first().image)
+        self.assertTrue(response.context['news_list'].first().image)
 
     def test_games_page_show_correct_context(self):
         """Checking context passed to the games page."""
         response = self.guest_client.get(reverse('bioware:game_list'))
-        self.assertEqual(response.context['game_list'], self.game_list)
-        first_game = response.context['game_list'].object_list[0]
+        self.assertEqual(
+            list(response.context['game_list']),
+            self.game_list
+        )
+        first_game = response.context['game_list'].first()
         self.assertTrue(first_game.image)
-        self.assertIn('Test game', first_game.title)
-        self.assertIn('Test desc', first_game.description)
-        self.assertIn('Xbox', first_game.platforms)
+        self.assertEqual(first_game.title, self.games.first().title)
+        self.assertEqual(
+            first_game.description,
+            self.games.first().description
+        )
+        self.assertEqual(first_game.platforms, self.games.first().platforms)
 
     def test_contacts_page_show_correct_context(self):
         """Checking context passed to the contacts page."""
@@ -149,5 +160,5 @@ class BiowareViewsTest(TestCase):
     def test_careers_page_show_correct_context(self):
         """Checking context passed to the careers page."""
         response = self.guest_client.get(reverse('bioware:careers'))
-        studio = response.context['studio_list'].object_list[0]
+        studio = response.context['studio_list'].first()
         self.assertIn(studio, (self.studio_edmont, self.studio_austin))

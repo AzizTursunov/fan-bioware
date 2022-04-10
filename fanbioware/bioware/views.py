@@ -1,9 +1,16 @@
 from django.shortcuts import render
+from .models import Game, News
 
 
 def index(request):
     template = 'bioware/index.html'
-    return render(request, template)
+    game_list = Game.objects.all()
+    news_list = News.objects.all()[:4]
+    context = {
+        'game_list': game_list,
+        'news_list': news_list
+    }
+    return render(request, template, context)
 
 
 def about(request):
@@ -13,7 +20,8 @@ def about(request):
 
 def game_list(request):
     template = 'bioware/games.html'
-    return render(request, template)
+    game_list = Game.objects.all()
+    return render(request, template, {'game_list': game_list})
 
 
 def game_detail(request):
