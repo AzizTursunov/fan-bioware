@@ -71,7 +71,7 @@ class GameModelTest(ModelFixtures, TestHelpTextMixin,
     def setUpClass(cls):
         super().setUpClass()
         cls.field_and_verbose_name = {
-            'title': 'Title',
+            'title': 'Name of the game',
             'description': 'Description',
             'image': 'Cover',
             'platforms': 'Platforms',

@@ -3,7 +3,11 @@ from django.db import models
 
 
 class Game(models.Model):
+    """"Creating the Game model."""
+
     class Platforms(models.TextChoices):
+        """Creating platform choice to Game model."""
+
         XBOX_ONE = 'XB_ONE', 'Xbox One Series'
         XBOX_360 = 'XB_360', 'Xbox 360 Series'
         Windows = 'PC', 'Windows PC'
@@ -12,6 +16,8 @@ class Game(models.Model):
         PLAYSTATION_5 = 'PS_5', 'PlayStation 5'
 
     class Genres(models.TextChoices):
+        """Creating genre choise to Game model."""
+
         ACTION = 'AC', 'Action'
         ADVENTURE = 'ADV', 'Adventure'
         FIGHTING = 'F', 'Fighting'
@@ -23,7 +29,7 @@ class Game(models.Model):
 
     title = models.CharField(
         max_length=255,
-        verbose_name='Game',
+        verbose_name='Name of the game',
         help_text='Enter the name of the game',
     )
     slug = models.SlugField(unique=True, verbose_name='URL')
@@ -57,8 +63,14 @@ class Game(models.Model):
     is_online = models.BooleanField(default=True)
     is_released = models.BooleanField(default=False)
 
+    def __str__(self):
+        """Return the title of the Game."""
+        return self.title
+
 
 class News(models.Model):
+    """Creating the News model."""
+
     game = models.ForeignKey(
         Game, on_delete=models.CASCADE, null=True,
         related_name='news',
@@ -90,9 +102,16 @@ class News(models.Model):
     class Meta:
         ordering = ['-pub_date']
 
+    def __str__(self):
+        """Return the title of the News."""
+        return self.title
+
 
 class Opening(models.Model):
+    """Creating the Opening model."""
+
     class EmploymentType(models.TextChoices):
+        """Creating employment type choice to the Opening model."""
         FULL_TIME = 'FT', 'Full-Time'
         PART_TIME = 'PT', 'Part-Time'
         TEMPORARY = 'T', 'Temporary'
@@ -106,7 +125,7 @@ class Opening(models.Model):
     team = models.CharField(
         max_length=255,
         verbose_name='Team',
-        help_text='Enter the role'
+        help_text='Enter the team'
     )
     role = models.CharField(
         max_length=255,
@@ -141,8 +160,14 @@ class Opening(models.Model):
         help_text='Describe the perks separated by semicolons'
     )
 
+    def __str__(self):
+        """Return the role of the Opening."""
+        return self.role
+
 
 class Studio(models.Model):
+    """Creating the Studio model."""
+
     location = models.CharField(
         max_length=255,
         verbose_name='Location',
@@ -173,11 +198,15 @@ class Studio(models.Model):
         help_text='Enter e-mail',
     )
     description = models.TextField(
-        verbose_name='Descrpition',
+        verbose_name='Description',
         help_text='Enter a description of the studio'
     )
     image = models.ImageField(
-        verbose_name='Image',
+        verbose_name='Cover',
         help_text='Attach the cover of the studio',
         upload_to='bioware/studio/'
     )
+
+    def __str__(self):
+        """Return the location of the Game."""
+        return self.location
