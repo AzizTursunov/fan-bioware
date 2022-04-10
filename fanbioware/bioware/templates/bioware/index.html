@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BioWare</title>
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" type="text/css" href="./slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css"/>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/slick/slick-theme.css' %}"/>
+    <link rel="stylesheet" href="{% static 'bioware/css/index.css' %}">
 </head>
 <body>
     <header class="header">
@@ -45,17 +46,17 @@
                         </div>
                         <ul class="header__social-networks-links">
                             <li>
-                                <a href="http://www.facebook.com/BioWare"><img src="./img/svg/bi_meta.svg" alt="meta-icon"></a>
+                                <a href="http://www.facebook.com/BioWare"><img src="{% static 'bioware/img/svg/bi_meta.svg' %}" alt="meta-icon"></a>
                             </li>
                             <li>
-                                <a href="https://twitter.com/BioWare"><img src="./img/svg/bi_twitter.svg" alt="twitter-icon"></a>
+                                <a href="https://twitter.com/BioWare"><img src="{% static 'bioware/img/svg/bi_twitter.svg' %}" alt="twitter-icon"></a>
                             </li>
                             <li>
                                 <a href="https://www.youtube.com/channel/UCePE_9yUaBe478B_CuCBcoA"><img
-                                        src="./img/svg/bi_youtube.svg" alt="yotube-icon"></a>
+                                        src="{% static 'bioware/img/svg/bi_youtube.svg' %}" alt="yotube-icon"></a>
                             </li>
                             <li>
-                                <a href="https://www.instagram.com/biowarebase/"><img src="./img/svg/bi_instagram.svg"
+                                <a href="https://www.instagram.com/biowarebase/"><img src="{% static 'bioware/img/svg/bi_instagram.svg' %}"
                                         alt="instagram-icon"></a>
                             </li>
                         </ul>
@@ -72,7 +73,7 @@
         <section class="section-block cover">
             <div class="cover__slider">
                 <div>
-                    <img src="./img/mass_effect_intro.jpg" alt="mass_effect" class="cover__pic">
+                    <img src="{% static 'bioware/img/mass_effect_intro.jpg' %}" alt="mass_effect" class="cover__pic">
                     <div class="cover__title-wrap">
                         <h1 class="cover__title cover__title-text-white">Relive</h1>
                         <p class="cover__desc">
@@ -83,7 +84,7 @@
                     </div>
                 </div>
                 <div>
-                    <img src="./img/anthem_intro.jpg" alt="anthem" class="cover__pic">
+                    <img src="{% static 'bioware/img/anthem_intro.jpg' %}" alt="anthem" class="cover__pic">
                     <div class="cover__title-wrap">
                         <h1 class="cover__title cover__title-text-white">Save</h1>
                         <p class="cover__desc">
@@ -94,7 +95,7 @@
                     </div>
                 </div>
                 <div>
-                    <img src="./img/dragon_age_intro.jpg" alt="dragon_age" class="cover__pic">
+                    <img src="{% static 'bioware/img/dragon_age_intro.jpg' %}" alt="dragon_age" class="cover__pic">
                     <div class="cover__title-wrap">
                         <h1 class="cover__title cover__title-text-white">Lead</h1>
                         <p class="cover__desc">
@@ -105,7 +106,7 @@
                     </div>
                 </div>
                 <div>
-                    <img src="./img/star_wars-intro.jpg" alt="star-wars" class="cover__pic">
+                    <img src="{% static 'bioware/img/star_wars-intro.jpg' %}" alt="star-wars" class="cover__pic">
                     <div class="cover__title-wrap">
                             <h1 class="cover__title cover__title-text-white">fight</h1>
                             <p class="cover__desc">
@@ -171,7 +172,7 @@
                 <div class="about-us__more">
                     <a href="./about.html" class="section-more-btn">
                         Learn more
-                        <img src="./img/svg/link-arrow.svg" alt="btn-arrow" class="section-more-btn__arrow">
+                        <img src="{% static 'bioware/img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                     </a>
                 </div>
             </div>
@@ -181,11 +182,11 @@
         <!-- Slogan start -->
         <div class="wrapper slogan">
             <span class="slogan__text">Creating <span class="slogan__text-color-orange">worlds of adventure,</span></span>
-            <img src="./img/index-slogan-image1.jpg" class="slogan__first-line-img" alt="slogan-img1">
-            <img src="./img/svg/index-slogan-image2.svg" class="slogan__second-line-img" alt="slogan-img2">
+            <img src="{% static 'bioware/img/index-slogan-image1.jpg' %}" class="slogan__first-line-img" alt="slogan-img1">
+            <img src="{% static 'bioware/img/svg/index-slogan-image2.svg' %}" class="slogan__second-line-img" alt="slogan-img2">
             <span class="slogan__text slogan__text-position-middle">conflict, and companionship that inspire you to become</span>
             <span class="slogan__text slogan__text-color-orange">the hero of your story.</span>
-            <img src="./img/index-slogan-image3.jpg" class="slogan__third-line-img" alt="slogan-img3">
+            <img src="{% static 'bioware/img/index-slogan-image3.jpg' %}" class="slogan__third-line-img" alt="slogan-img3">
         </div>
         <!-- Slogan end -->
 
@@ -200,7 +201,7 @@
                     <li class="our-games-item">
                         <a href="#!"></a>
                         <div class="our-games-item__picture">
-                            <img src="/img/index-games-mass-effect.jpg" alt="mass-effect" class="our-games-item__img">
+                            <img src="{% static 'bioware/img/index-games-mass-effect.jpg' %}" alt="mass-effect" class="our-games-item__img">
                         </div>
                         <div class="our-games-item__text">
                             <div class="our-games-item__title">Mass effect</div>
@@ -214,7 +215,7 @@
                     <li class="our-games-item">
                         <a href="#!"></a>
                         <div class="our-games-item__picture">
-                            <img src="/img/index-games-mass-effect-2.jpg" alt="mass-effect-2" class="our-games-item__img">
+                            <img src="{% static 'bioware/img/index-games-mass-effect-2.jpg' %}" alt="mass-effect-2" class="our-games-item__img">
                         </div>
                         <div class="our-games-item__text">
                             <div class="our-games-item__title">MASS EFFECT 2</div>
@@ -227,7 +228,7 @@
                     <li class="our-games-item">
                         <a href="#!"></a>
                         <div class="our-games-item__picture">
-                            <img src="/img/index-games-da.jpg" alt="dragon-age" class="our-games-item__img">
+                            <img src="{% static 'bioware/img/index-games-da.jpg' %}" alt="dragon-age" class="our-games-item__img">
                         </div>
                         <div class="our-games-item__text">
                             <div class="our-games-item__title">DRAGON AGE: ORIGINS</div>
@@ -241,7 +242,7 @@
                     <li class="our-games-item">
                         <a href="#!"></a>
                         <div class="our-games-item__picture">
-                            <img src="/img/index-games-da-2.jpg" alt="dragon-age-2" class="our-games-item__img">
+                            <img src="{% static 'bioware/img/index-games-da-2.jpg' %}" alt="dragon-age-2" class="our-games-item__img">
                         </div>
                         <div class="our-games-item__text">
                             <div class="our-games-item__title">DRAGON AGE II</div>
@@ -254,7 +255,7 @@
                     <li class="our-games-item">
                         <a href="#!"></a>
                         <div class="our-games-item__picture">
-                            <img src="/img/index-games-da-inq.jpg" alt="dragon-age-inquisition" class="our-games-item__img">
+                            <img src="{% static 'bioware/img/index-games-da-inq.jpg' %}" alt="dragon-age-inquisition" class="our-games-item__img">
                         </div>
                         <div class="our-games-item__text">
                             <div class="our-games-item__title">DRAGON AGE: INQUISITION
@@ -269,7 +270,7 @@
                 <div class="our-games-more">
                     <a href="./games.html" class="section-more-btn black-text">
                         Go to our games
-                        <img src="./img/svg/link-arrow-black.svg" alt="btn-arrow" class="section-more-btn__arrow">
+                        <img src="{% static 'bioware/img/svg/link-arrow-black.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                     </a>
                 </div>
             </div>
@@ -287,7 +288,7 @@
                     <li class="news-card">
                         <a href="#!" class="news-card__link"></a>
                         <div class="news-card__picture">
-                            <img src="/img/index-news-image1.jpg" alt="news_image1" class="news-card__img">
+                            <img src="{% static 'bioware/img/index-news-image1.jpg' %}" alt="news_image1" class="news-card__img">
                         </div>
                         <div class="news-card__title">Legacy of the Sith Story Livestream Recap</div>
                         <div class="news-card__text">Our Legacy of the Sith Story Livestream was jam-packed with information!
@@ -302,7 +303,7 @@
                     <li class="news-card">
                         <a href="#!" class="news-card__link"></a>
                         <div class="news-card__picture">
-                            <img src="/img/index-news-image2.jpg" alt="news_image2" class="news-card__img">
+                            <img src="{% static 'bioware/img/index-news-image2.jpg' %}" alt="news_image2" class="news-card__img">
                         </div>
                         <div class="news-card__title">Happy N7 Day 2021</div>
                         <div class="news-card__text">
@@ -316,7 +317,7 @@
                     <li class="news-card">
                         <a href="#!" class="news-card__link"></a>
                         <div class="news-card__picture">
-                            <img src="/img/index-news-image3.jpg" alt="news_image3" class="news-card__img">
+                            <img src="{% static 'bioware/img/index-news-image3.jpg' %}" alt="news_image3" class="news-card__img">
                         </div>
                         <div class="news-card__title">Gary McKay Confirmed as Studio General Manager</div>
                         <div class="news-card__text">
@@ -330,7 +331,7 @@
                     <li class="news-card">
                         <a href="#!" class="news-card__link"></a>
                         <div class="news-card__picture">
-                            <img src="/img/index-news-image4.jpg" alt="news_image4" class="news-card__img">
+                            <img src="{% static 'bioware/img/index-news-image4.jpg' %}" alt="news_image4" class="news-card__img">
                         </div>
                         <div class="news-card__title">Thank you from The Mass Effect Legendary Team</div>
                         <div class="news-card__text">
@@ -345,7 +346,7 @@
                 <div class="news__more">
                     <a href="#!" class="section-more-btn">
                         Load more
-                        <img src="./img/svg/link-arrow.svg" alt="btn-arrow" class="section-more-btn__arrow">
+                        <img src="{% static 'bioware/img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                     </a>
                 </div>
             </div>
@@ -366,7 +367,7 @@
                     <div class="hiring__more">
                         <a href="/careers.html" class="section-more-btn black-text">
                             Explore job openings
-                            <img src="./img/svg/link-arrow-black.svg" alt="btn-arrow" class="section-more-btn__arrow">
+                            <img src="{% static 'bioware/img/svg/link-arrow-black.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                         </a>
                     </div>
                     <div class="hiring__cards">
@@ -387,7 +388,7 @@
         <div class="wrapper">
             <a href="./games.html" class="go-to-other-page">
                 Go to our games
-                <img src="./img/svg/link-arrow-lg.svg" alt="btn-arrow" class="go-to-other-page__arrow">
+                <img src="{% static 'bioware/img/svg/link-arrow-lg.svg' %}" alt="btn-arrow" class="go-to-other-page__arrow">
             </a>
         </div>
     </main>
@@ -404,17 +405,17 @@
                     </div>
                     <ul class="footer__social_networks">
                         <li>
-                            <a href="http://www.facebook.com/BioWare"><img src="./img/svg/bi_meta.svg" alt="meta-icon"></a>
+                            <a href="http://www.facebook.com/BioWare"><img src="{% static 'bioware/img/svg/bi_meta.svg' %}" alt="meta-icon"></a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/BioWare"><img src="./img/svg/bi_twitter.svg" alt="twitter-icon"></a>
+                            <a href="https://twitter.com/BioWare"><img src="{% static 'bioware/img/svg/bi_twitter.svg' %}" alt="twitter-icon"></a>
                         </li>
                         <li>
                             <a href="https://www.youtube.com/channel/UCePE_9yUaBe478B_CuCBcoA"><img
-                                    src="./img/svg/bi_youtube.svg" alt="yotube-icon"></a>
+                                    src="{% static 'bioware/img/svg/bi_youtube.svg' %}" alt="yotube-icon"></a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/biowarebase/"><img src="./img/svg/bi_instagram.svg"
+                            <a href="https://www.instagram.com/biowarebase/"><img src="{% static 'bioware/img/svg/bi_instagram.svg' %}"
                                     alt="instagram-icon"></a>
                         </li>
                     </ul>
@@ -467,10 +468,10 @@
         </div>
     </footer>
     <!-- Footer end -->
-    <script src="./scripts/main.js"></script>
-    <script src="./scripts/jquery.min.js"></script>
-    <script src="./slick/slick.min.js"></script>
-    <script src="./scripts/index.js"></script>
+    <script src="{% static 'bioware/scripts/main.js' %}"></script>
+    <script src="{% static 'bioware/scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'bioware/slick/slick.min.js' %}"></script>
+    <script src="{% static 'bioware/scripts/index.js' %}"></script>
 </body>
 </html>
 

@@ -36,11 +36,10 @@ class BiowareViewsTest(TestCase):
                 Game(
                     pk=i,
                     title=f'Test game #{i}',
-                    description=f'Test desc for game #{i}.',
+                    slug=f'Test game slug #{i}',
+                    description=f'Test game desc #{i}.',
                     image=cls.uploaded,
-                    platforms='Xbox',
-                    release_date='2020-02-02',
-                    genre='Action'
+                    rel_date='2020-02-02',
                 )
             )
         Game.objects.bulk_create(cls.game_list)
@@ -54,30 +53,29 @@ class BiowareViewsTest(TestCase):
                     intro='Test news intro for game #1.',
                     text='Test news text for game #1.',
                     image=cls.uploaded,
-                    tags='Test news tags.'
                 )
             )
         News.objects.bulk_create(cls.news_list)
         cls.news = News.objects.all()
 
         cls.studio_edmont = Studio.objects.create(
-            location='Edmont, Canada',
-            address1='Test street',
-            address2='Test city',
-            zip_code='Test zip 1',
-            phone='+1 512 592 5293',
-            mail='email@test.com',
-            description='Test desc of the studio',
+            location='Edmonton, Canada',
+            address1='Test studio street',
+            address2='Tests studio city',
+            zip_code='Test studio zip code',
+            phone='Test studio phone',
+            email='email@test.com',
+            description='Test studio description',
             image=cls.uploaded
         )
         cls.studio_austin = Studio.objects.create(
             location='Austin, US',
-            address1='Test street',
-            address2='Test city',
-            zip_code='Test zip 2',
-            phone='+1 512 592 5293',
-            mail='email@test.com',
-            description='Test desc of the studio',
+            address1='Test studio street',
+            address2='Tests studio city',
+            zip_code='Test studio zip code',
+            phone='Test studio phone',
+            email='email@test.com',
+            description='Test studio description',
             image=cls.uploaded
         )
 
@@ -85,20 +83,20 @@ class BiowareViewsTest(TestCase):
             studio=cls.studio_edmont,
             team='Test team 1',
             role='Test role 1',
-            descriptiopn='Test desc of the studio',
+            description='Test desc of the studio',
             remote=True,
             responsibilities='First_test_resp;Second_test_resp',
-            qualificaitions='First_test_qualif;Second_test_qualif',
+            qualifications='First_test_qualif;Second_test_qualif',
             perks='First_test_perk;Second_test_perk'
         )
         cls.opening_austin = Opening.objects.create(
             studio=cls.studio_austin,
             team='Test team 2',
             role='Test role 2',
-            descriptiopn='Test desc of the studio',
+            description='Test desc of the studio',
             remote=True,
             responsibilities='First_test_resp;Second_test_resp',
-            qualificaitions='First_test_qualif;Second_test_qualif',
+            qualifications='First_test_qualif;Second_test_qualif',
             perks='First_test_perk;Second_test_perk'
         )
 
