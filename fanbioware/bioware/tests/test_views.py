@@ -152,9 +152,12 @@ class BiowareViewsTest(TestCase):
     def test_contacts_page_show_correct_context(self):
         """Checking context passed to the contacts page."""
         response = self.guest_client.get(reverse('bioware:contacts'))
-        studio_austin, studio_edmont = sorted(response.context['studio_list'])
-        self.assertEqual(studio_austin.location, 'Austin, US')
-        self.assertEqual(studio_austin.zip_code, 'Test zip 2')
+        studio_austin = response.context['studio_list'].get(
+            location='Austin, US'
+        )
+        self.assertEqual(studio_austin.address1, self.studio_austin.address1)
+        self.assertEqual(studio_austin.phone, self.studio_austin.phone)
+        self.assertEqual(studio_austin.zip_code, self.studio_austin.zip_code)
         self.assertTrue(studio_austin.image)
 
     def test_careers_page_show_correct_context(self):

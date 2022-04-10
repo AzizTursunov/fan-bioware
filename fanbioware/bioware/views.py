@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Game, News
+from django.shortcuts import get_object_or_404, render
+from .models import Game, News, Studio
 
 
 def index(request):
@@ -36,4 +36,5 @@ def careers(request):
 
 def contacts(request):
     template = 'bioware/contacts.html'
-    return render(request, template)
+    studio_list = Studio.objects.all()
+    return render(request, template, {'studio_list': studio_list})
