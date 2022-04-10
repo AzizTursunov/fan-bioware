@@ -133,3 +133,6 @@ dmypy.json
 
 # Django migrations
 migrations/
+
+# Static
+static/
