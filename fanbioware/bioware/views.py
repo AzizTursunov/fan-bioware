@@ -31,7 +31,8 @@ def game_detail(request):
 
 def careers(request):
     template = 'bioware/careers.html'
-    return render(request, template)
+    studio_list = Studio.objects.prefetch_related('openings').all()
+    return render(request, template, {'studio_list': studio_list})
 
 
 def contacts(request):
