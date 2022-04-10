@@ -235,63 +235,21 @@
                 </div>
                 <ul class="news-cards">
                     {% for news in news_list %}
+                    {% if news.is_publicated %}
                     <li class="news-card">
                         <a href="#!" class="news-card__link"></a>
                         <div class="news-card__picture">
-                            <!-- <img src="{% static 'bioware/img/index-news-image1.jpg' %}" alt="news_image1" class="news-card__img"> -->
+                            <img src="{{news.image.url}}" alt="news_image1" class="news-card__img">
                         </div>
-                        <div class="news-card__title">Legacy of the Sith Story Livestream Recap</div>
-                        <div class="news-card__text">Our Legacy of the Sith Story Livestream was jam-packed with information!
-                            If you were unable to watch — or if you want a recap of everything we showed — we have you
-                            covered.
-                        </div>
+                        <div class="news-card__title">{{news.title}}</div>
+                        <div class="news-card__text">{{news.text}}</div>
                         <div class="news-card__caption">
-                            <div class="news-card__data">Nov. 19, 2021</div>
+                            <div class="news-card__data">{{news.pub_date}}</div>
                             <div class="news-card__arrow"></div>
                         </div>
                     </li>
-                    <li class="news-card">
-                        <a href="#!" class="news-card__link"></a>
-                        <div class="news-card__picture">
-                            <img src="{% static 'bioware/img/index-news-image2.jpg' %}" alt="news_image2" class="news-card__img">
-                        </div>
-                        <div class="news-card__title">Happy N7 Day 2021</div>
-                        <div class="news-card__text">
-                            Join us as we celebrate all things Mass Effect It’s been nearly fourteen years since Commander Shepard first boarded the Normandy. Fourteen years since the opening of a huge new universe for players to explore.
-                        </div>
-                        <div class="news-card__caption">
-                            <div class="news-card__data">Nov. 7, 2021</div>
-                            <div class="news-card__arrow"></div>
-                        </div>
-                    </li>
-                    <li class="news-card">
-                        <a href="#!" class="news-card__link"></a>
-                        <div class="news-card__picture">
-                            <img src="{% static 'bioware/img/index-news-image3.jpg' %}" alt="news_image3" class="news-card__img">
-                        </div>
-                        <div class="news-card__title">Gary McKay Confirmed as Studio General Manager</div>
-                        <div class="news-card__text">
-                            We’re delighted to announce that Gary McKay, formerly the Interim General Manager of BioWare, has been confirmed as our permanent GM.
-                        </div>
-                        <div class="news-card__caption">
-                            <div class="news-card__data">June 14, 2021</div>
-                            <div class="news-card__arrow"></div>
-                        </div>
-                    </li>
-                    <li class="news-card">
-                        <a href="#!" class="news-card__link"></a>
-                        <div class="news-card__picture">
-                            <img src="{% static 'bioware/img/index-news-image4.jpg' %}" alt="news_image4" class="news-card__img">
-                        </div>
-                        <div class="news-card__title">Thank you from The Mass Effect Legendary Team</div>
-                        <div class="news-card__text">
-                            Hello again, everyone! By this time tomorrow, Mass Effect™ Legendary Edition will be in your hands. It’s been a long-awaited day for all of us on the team.
-                        </div>
-                        <div class="news-card__caption">
-                            <div class="news-card__data">June 14, 2021</div>
-                            <div class="news-card__arrow"></div>
-                        </div>
-                    </li>
+                    {% endif %}
+                    {% endfor %}
                 </ul>
                 <div class="news__more">
                     <a href="#!" class="section-more-btn">

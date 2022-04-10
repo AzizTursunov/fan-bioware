@@ -2,5 +2,9 @@ from django.contrib import admin
 from .models import Game, News
 
 
-admin.site.register(Game)
+class GameAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title', )}
+
+
+admin.site.register(Game, GameAdmin)
 admin.site.register(News)
