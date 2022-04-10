@@ -24,8 +24,8 @@ def game_list(request):
     return render(request, template, {'game_list': game_list})
 
 
-def game_detail(request):
-    template = 'bioware/mass_effect.html'
+def game_detail(request, game_slug):
+    template = f'bioware/{game_slug}.html'
     return render(request, template)
 
 

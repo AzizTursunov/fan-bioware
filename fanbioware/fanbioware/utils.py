@@ -15,7 +15,9 @@ BIOWARE_REVERSE_URL_VS_TEMPLATE = {
     reverse('bioware:index'): 'bioware/index.html',
     reverse('bioware:about'): 'bioware/about.html',
     reverse('bioware:game_list'): 'bioware/games.html',
-    reverse('bioware:game_detail'): 'bioware/mass_effect.html',
+    reverse(
+        'bioware:game_detail', args=('mass_effect',)
+        ): 'bioware/mass_effect.html',
     reverse('bioware:careers'): 'bioware/careers.html',
     reverse('bioware:contacts'): 'bioware/contacts.html'
 }
