@@ -1,7 +1,7 @@
 from django.test import TestCase
 from fanbioware.utils import (TestHelpTextMixin, TestVerboseNameMixin,
                               TestFiedlMaxLengthMixin)
-from ..models import Game, News, Openings
+from ..models import Game, News, Opening, Studio
 
 
 class ModelFixtures(TestCase):
@@ -10,7 +10,8 @@ class ModelFixtures(TestCase):
         super().setUpClass()
         cls.game = Game.objects.create()
         cls.news = News.objects.create()
-        cls.openings = Openings.objects.create()
+        cls.opening = Opening.objects.create()
+        cls.studio = Studio.objects.create()
 
 
 class GameModelTest(ModelFixtures, TestHelpTextMixin,
@@ -102,8 +103,8 @@ class NewsModelTest(ModelFixtures, TestHelpTextMixin,
         super().run_fields_max_len_test(self.news)
 
 
-class OpeningsModelTest(ModelFixtures, TestHelpTextMixin,
-                        TestVerboseNameMixin, TestFiedlMaxLengthMixin):
+class OpeningModelTest(ModelFixtures, TestHelpTextMixin,
+                       TestVerboseNameMixin, TestFiedlMaxLengthMixin):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -134,14 +135,57 @@ class OpeningsModelTest(ModelFixtures, TestHelpTextMixin,
             'perks': 'Describe the perks separated by semicolons'
         }
 
-    def test_news_str_method(self):
-        """Checking the method __str__ of the Openings model."""
-        self.assertEqual(str(self.openings), self.openings.role)
+    def test_opening_str_method(self):
+        """Checking the method __str__ of the Opening model."""
+        self.assertEqual(str(self.opening), self.opening.role)
 
-    def test_news_model_fields_verbose_name(self):
-        """Checking fields verbose_name of the Openings model."""
-        super().run_verbose_name_test(self.openings)
+    def test_opening_model_fields_verbose_name(self):
+        """Checking fields verbose_name of the Opening model."""
+        super().run_verbose_name_test(self.opening)
 
-    def test_news_model_fields_help_text(self):
-        """Checking fields help_text of the Openings model."""
-        super().run_help_text_test(self.openings)
+    def test_opening_model_fields_help_text(self):
+        """Checking fields help_text of the Opening model."""
+        super().run_help_text_test(self.opening)
+
+
+class StudioModelTest(ModelFixtures, TestHelpTextMixin,
+                      TestVerboseNameMixin, TestFiedlMaxLengthMixin):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.field_and_verbose_name = {
+            'location': 'Location',
+            'address1': 'Address',
+            'address2': 'City',
+            'zip_code': 'Zip Code',
+            'phone': 'Phone',
+            'mail': 'Email',
+            'description': 'Description',
+            'image': 'Cover',
+            'openings': 'Openings'
+        }
+        cls.field_and_verbose_name = {
+            'location': (
+                'Enter the name of the city and '
+                'country separated by commas'
+            ),
+            'address1': 'Enter the street name and building number',
+            'address2': 'Enter the city',
+            'zip_code': 'Enter the zip code',
+            'phone': 'Enter the phone number',
+            'mail': 'Enter e-mail',
+            'description': 'Enter a description of the studio',
+            'image': 'Attach the cover of the news',
+        }
+
+    def test_studio_str_method(self):
+        """Checking the method __str__ of the Studio model."""
+        self.assertEqual(str(self.studio), self.studio.location)
+
+    def test_studio_model_fields_verbose_name(self):
+        """Checking fields verbose_name of the Studio model."""
+        super().run_verbose_name_test(self.studio)
+
+    def test_studio_model_fields_help_text(self):
+        """Checking fields help_text of the Studio model."""
+        super().run_help_text_test(self.studio)

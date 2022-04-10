@@ -9,5 +9,9 @@ class News(models.Model):
     ...
 
 
-class Openings(models.Model):
+class Opening(models.Model):
+    ...
+
+
+class Studio(models.Model):
     ...
