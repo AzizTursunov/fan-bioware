@@ -2,24 +2,30 @@ from django.shortcuts import render
 
 
 def index(request):
-    pass
+    template = 'bioware/index.html'
+    return render(request, template)
 
 
 def about(request):
-    pass
+    template = 'bioware/about.html'
+    return render(request, template)
 
 
 def game_list(request):
-    pass
+    template = 'bioware/games.html'
+    return render(request, template)
 
 
 def game_detail(request):
-    pass
+    template = 'bioware/mass_effect.html'
+    return render(request, template)
 
 
 def careers(request):
-    pass
+    template = 'bioware/careers.html'
+    return render(request, template)
 
 
 def contacts(request):
-    pass
+    template = 'bioware/contacts.html'
+    return render(request, template)

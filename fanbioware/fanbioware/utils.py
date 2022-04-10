@@ -4,7 +4,7 @@ NEWS_ON_PAGE = 4
 
 BIOWARE_URL_VS_TEMPLATE = {
     '/': 'bioware/index.html',
-    '/about/': 'boiware/about.html',
+    '/about/': 'bioware/about.html',
     '/games/': 'bioware/games.html',
     '/games/mass_effect/': 'bioware/mass_effect.html',
     '/careers/': 'bioware/careers.html',
@@ -13,7 +13,7 @@ BIOWARE_URL_VS_TEMPLATE = {
 
 BIOWARE_REVERSE_URL_VS_TEMPLATE = {
     reverse('bioware:index'): 'bioware/index.html',
-    reverse('bioware:about'): 'boiware/about.html',
+    reverse('bioware:about'): 'bioware/about.html',
     reverse('bioware:game_list'): 'bioware/games.html',
     reverse('bioware:game_detail'): 'bioware/mass_effect.html',
     reverse('bioware:careers'): 'bioware/careers.html',
