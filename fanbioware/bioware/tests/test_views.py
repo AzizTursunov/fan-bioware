@@ -6,7 +6,7 @@ from django.test import Client, TestCase, override_settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
 from fanbioware.utils import BIOWARE_REVERSE_URL_VS_TEMPLATE, NEWS_ON_PAGE
-from ..models import Game, News, Openings
+from ..models import Game, News, Opening, Studio
 
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 
@@ -60,6 +60,48 @@ class BiowareViewsTest(TestCase):
         News.objects.bulk_create(cls.news_list)
         cls.news = News.objects.all()
 
+        cls.studio_edmont = Studio.objects.create(
+            location='Edmont, Canada',
+            address1='Test street',
+            address2='Test city',
+            zip_code='Test zip 1',
+            phone='+1 512 592 5293',
+            mail='email@test.com',
+            description='Test desc of the studio',
+            image=cls.uploaded
+        )
+        cls.studio_austin = Studio.objects.create(
+            location='Austin, US',
+            address1='Test street',
+            address2='Test city',
+            zip_code='Test zip 2',
+            phone='+1 512 592 5293',
+            mail='email@test.com',
+            description='Test desc of the studio',
+            image=cls.uploaded
+        )
+
+        cls.opening_edmont = Opening.objects.create(
+            studio=cls.studio_edmont,
+            team='Test team 1',
+            role='Test role 1',
+            descriptiopn='Test desc of the studio',
+            remote=True,
+            responsibilities='First_test_resp;Second_test_resp',
+            qualificaitions='First_test_qualif;Second_test_qualif',
+            perks='First_test_perk;Second_test_perk'
+        )
+        cls.opening_austin = Opening.objects.create(
+            studio=cls.studio_austin,
+            team='Test team 2',
+            role='Test role 2',
+            descriptiopn='Test desc of the studio',
+            remote=True,
+            responsibilities='First_test_resp;Second_test_resp',
+            qualificaitions='First_test_qualif;Second_test_qualif',
+            perks='First_test_perk;Second_test_perk'
+        )
+
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
@@ -79,19 +121,35 @@ class BiowareViewsTest(TestCase):
     def test_index_page_show_correct_context(self):
         """Checking context passed to the index page."""
         response = self.guest_client.get(reverse('bioware:index'))
+        first_game = response.context['game_list'].object_list[0]
+        first_news = response.context['news_list'].object_list[0]
         self.assertEqual(response.context['game_list'], self.game_list)
         self.assertEqual(response.context['news_list'], self.news_list)
-        self.assertTrue(
-            response.context['game_list'].object_list[0].image
-        )
-        self.assertTrue(
-            response.context['news_list'].object_list[0].image
-        )
+        self.assertTrue(first_game.image)
+        self.assertIn('Test game', first_game.title)
+        self.assertTrue(first_news.image)
+        self.assertIn('Test news', first_news.title)
 
     def test_games_page_show_correct_context(self):
         """Checking context passed to the games page."""
         response = self.guest_client.get(reverse('bioware:game_list'))
         self.assertEqual(response.context['game_list'], self.game_list)
-        self.assertTrue(
-            response.context['game_list'].object_list[0].image
-        )
+        first_game = response.context['game_list'].object_list[0]
+        self.assertTrue(first_game.image)
+        self.assertIn('Test game', first_game.title)
+        self.assertIn('Test desc', first_game.description)
+        self.assertIn('Xbox', first_game.platforms)
+
+    def test_contacts_page_show_correct_context(self):
+        """Checking context passed to the contacts page."""
+        response = self.guest_client.get(reverse('bioware:contacts'))
+        studio_austin, studio_edmont = sorted(response.context['studio_list'])
+        self.assertEqual(studio_austin.location, 'Austin, US')
+        self.assertEqual(studio_austin.zip_code, 'Test zip 2')
+        self.assertTrue(studio_austin.image)
+
+    def test_careers_page_show_correct_context(self):
+        """Checking context passed to the careers page."""
+        response = self.guest_client.get(reverse('bioware:careers'))
+        studio = response.context['studio_list'].object_list[0]
+        self.assertIn(studio, (self.studio_edmont, self.studio_austin))
