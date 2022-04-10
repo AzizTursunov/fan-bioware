@@ -63,6 +63,11 @@ class Game(models.Model):
     is_online = models.BooleanField(default=True)
     is_released = models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name = 'Game'
+        verbose_name_plural = 'Games'
+        ordering = ['id']
+
     def __str__(self):
         """Return the title of the Game."""
         return self.title
@@ -72,8 +77,8 @@ class News(models.Model):
     """Creating the News model."""
 
     game = models.ForeignKey(
-        Game, on_delete=models.CASCADE, null=True,
-        related_name='news',
+        Game, on_delete=models.CASCADE, blank=True,
+        null=True, related_name='news',
         verbose_name='Game',
         help_text='Choose the game',
     )
@@ -101,6 +106,8 @@ class News(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
+        verbose_name = 'News'
+        verbose_name_plural = 'News'
 
     def __str__(self):
         """Return the title of the News."""
@@ -160,6 +167,10 @@ class Opening(models.Model):
         help_text='Describe the perks separated by semicolons'
     )
 
+    class Meta:
+        verbose_name = 'Job opening'
+        verbose_name_plural = 'Job openings'
+
     def __str__(self):
         """Return the role of the Opening."""
         return self.role
@@ -206,6 +217,10 @@ class Studio(models.Model):
         help_text='Attach the cover of the studio',
         upload_to='bioware/studio/'
     )
+
+    class Meta:
+        verbose_name = 'Studio'
+        verbose_name_plural = 'Studois'
 
     def __str__(self):
         """Return the location of the Game."""

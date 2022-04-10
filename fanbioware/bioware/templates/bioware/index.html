@@ -234,10 +234,11 @@
                     <h3 class="section-caption__title">Check out the latest news from time to time to stay updated.</h3>
                 </div>
                 <ul class="news-cards">
+                    {% for news in news_list %}
                     <li class="news-card">
                         <a href="#!" class="news-card__link"></a>
                         <div class="news-card__picture">
-                            <img src="{% static 'bioware/img/index-news-image1.jpg' %}" alt="news_image1" class="news-card__img">
+                            <!-- <img src="{% static 'bioware/img/index-news-image1.jpg' %}" alt="news_image1" class="news-card__img"> -->
                         </div>
                         <div class="news-card__title">Legacy of the Sith Story Livestream Recap</div>
                         <div class="news-card__text">Our Legacy of the Sith Story Livestream was jam-packed with information!
