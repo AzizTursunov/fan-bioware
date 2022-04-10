@@ -147,74 +147,21 @@
                     <h3 class="section-caption__title black-text">Please explore our most popular games. We invite you to join us on the journey.</h3>
                 </div>
                 <ul class="our-games-list">
+                    {% for game in game_list %}
+                    {% if game.is_released %}
                     <li class="our-games-item">
                         <a href="#!"></a>
                         <div class="our-games-item__picture">
-                            <img src="{% static 'bioware/img/index-games-mass-effect.jpg' %}" alt="mass-effect" class="our-games-item__img">
+                            <img src="{{game.image.url}}" alt="mass-effect" class="our-games-item__img">
                         </div>
                         <div class="our-games-item__text">
-                            <div class="our-games-item__title">Mass effect</div>
-                            <div class="our-games-item__desc">The galaxy is trapped in an endless cycle of extinction.
-                                Every 50,000 years, an ancient machine race invades with ruthless efficiency, wiping out all
-                                advanced organic civilization.
-                            </div>
+                            <div class="our-games-item__title">{{game.title}}</div>
+                            <div class="our-games-item__desc">{{game.description}}</div>
                         </div>
                         <div class="our-games-item__arrow"></div>
                     </li>
-                    <li class="our-games-item">
-                        <a href="#!"></a>
-                        <div class="our-games-item__picture">
-                            <img src="{% static 'bioware/img/index-games-mass-effect-2.jpg' %}" alt="mass-effect-2" class="our-games-item__img">
-                        </div>
-                        <div class="our-games-item__text">
-                            <div class="our-games-item__title">MASS EFFECT 2</div>
-                            <div class="our-games-item__desc">Two years after Commander Shepard repelled the invading
-                                Reapers bent on the destruction of organic life, a mysterious new enemy emerges.
-                            </div>
-                        </div>
-                        <div class="our-games-item__arrow"></div>
-                    </li>
-                    <li class="our-games-item">
-                        <a href="#!"></a>
-                        <div class="our-games-item__picture">
-                            <img src="{% static 'bioware/img/index-games-da.jpg' %}" alt="dragon-age" class="our-games-item__img">
-                        </div>
-                        <div class="our-games-item__text">
-                            <div class="our-games-item__title">DRAGON AGE: ORIGINS</div>
-                            <div class="our-games-item__desc">Dragon Age: Origins is an epic tale of violence, passion,
-                                and betrayal. A Blight threatens to destroy the world, and survival rests in the hands
-                                of those chosen by fate.
-                            </div>
-                        </div>
-                        <div class="our-games-item__arrow"></div>
-                    </li>
-                    <li class="our-games-item">
-                        <a href="#!"></a>
-                        <div class="our-games-item__picture">
-                            <img src="{% static 'bioware/img/index-games-da-2.jpg' %}" alt="dragon-age-2" class="our-games-item__img">
-                        </div>
-                        <div class="our-games-item__text">
-                            <div class="our-games-item__title">DRAGON AGE II</div>
-                            <div class="our-games-item__desc">Experience the epic sequel to the 2009 Game of the Year.
-                                In Dragon Age II, you are one of the few who escaped the destruction of your home.
-                            </div>
-                        </div>
-                        <div class="our-games-item__arrow"></div>
-                    </li>
-                    <li class="our-games-item">
-                        <a href="#!"></a>
-                        <div class="our-games-item__picture">
-                            <img src="{% static 'bioware/img/index-games-da-inq.jpg' %}" alt="dragon-age-inquisition" class="our-games-item__img">
-                        </div>
-                        <div class="our-games-item__text">
-                            <div class="our-games-item__title">DRAGON AGE: INQUISITION
-                            </div>
-                            <div class="our-games-item__desc">Lead the Inquisition to hunt down the agents of chaos. The
-                                choices you make will forever change the Dragon Age.
-                            </div>
-                        </div>
-                        <div class="our-games-item__arrow"></div>
-                    </li>
+                {% endif %}
+                {% endfor %}
                 </ul>
                 <div class="our-games-more">
                     <a href="./games.html" class="section-more-btn black-text">
