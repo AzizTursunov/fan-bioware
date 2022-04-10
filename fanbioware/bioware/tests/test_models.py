@@ -1,17 +1,68 @@
-from django.test import TestCase
+import shutil
+import tempfile
+from django.test import TestCase, override_settings
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.conf import settings
 from fanbioware.utils import (TestHelpTextMixin, TestVerboseNameMixin,
                               TestFiedlMaxLengthMixin)
 from ..models import Game, News, Opening, Studio
 
+TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 
+
+@override_settings(MEDIA_ROOT=TEMP_MEDIA_ROOT)
 class ModelFixtures(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.game = Game.objects.create()
-        cls.news = News.objects.create()
-        cls.opening = Opening.objects.create()
-        cls.studio = Studio.objects.create()
+        cls.small_gif = (
+            b'\x47\x49\x46\x38\x39\x61\x02\x00'
+            b'\x01\x00\x80\x00\x00\x00\x00\x00'
+            b'\xFF\xFF\xFF\x21\xF9\x04\x00\x00'
+            b'\x00\x00\x00\x2C\x00\x00\x00\x00'
+            b'\x02\x00\x01\x00\x00\x02\x02\x0C'
+            b'\x0A\x00\x3B'
+        )
+        cls.uploaded = SimpleUploadedFile(
+            name='small.gif',
+            content=cls.small_gif,
+            content_type='image/gif'
+        )
+        cls.game = Game.objects.create(
+            title='Test title',
+            slug='test-game',
+            description='Test desc',
+            image=cls.uploaded,
+            rel_date='2020-10-15'
+        )
+        cls.news = News.objects.create(
+            game=cls.game,
+            title='Test news title',
+            intro='Test news intro',
+            text='Test news text',
+            image=cls.uploaded
+        )
+        cls.studio = Studio.objects.create(
+            location='Test studio City, Test studio Country',
+            address1='Test studio street',
+            address2='Tests studio city',
+            zip_code='Test studio zip code',
+            phone='Test studio phone',
+            email='email@test.com',
+            description='Test studio description',
+            image=cls.uploaded
+        )
+        cls.opening = Opening.objects.create(
+            studio=cls.studio,
+            team='Test openings team',
+            role='Test openings role',
+            description='Test openings desc'
+        )
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+        shutil.rmtree(TEMP_MEDIA_ROOT, ignore_errors=True)
 
 
 class GameModelTest(ModelFixtures, TestHelpTextMixin,
@@ -24,7 +75,7 @@ class GameModelTest(ModelFixtures, TestHelpTextMixin,
             'description': 'Description',
             'image': 'Cover',
             'platforms': 'Platforms',
-            'release_date': 'Release date',
+            'rel_date': 'Release date',
             'genre': 'Genre'
         }
 
@@ -33,7 +84,7 @@ class GameModelTest(ModelFixtures, TestHelpTextMixin,
             'description': 'Enter a description of the game',
             'image': 'Attach the cover of the game',
             'platforms': 'Select the available platforms',
-            'release_date': 'Enter the release date',
+            'rel_date': 'Enter the release date',
             'genre': 'Select the game genre'
         }
 
@@ -69,7 +120,6 @@ class NewsModelTest(ModelFixtures, TestHelpTextMixin,
             'intro': 'Intro',
             'text': 'Text',
             'image': 'Cover',
-            'tags': 'Tags'
         }
 
         cls.field_and_help_text = {
@@ -78,7 +128,6 @@ class NewsModelTest(ModelFixtures, TestHelpTextMixin,
             'intro': 'Enter a short intro of the news',
             'text': 'Enter the news text',
             'image': 'Attach the cover of the news',
-            'tags': 'Add the news tags'
         }
 
         cls.field_and_max_len = {
@@ -113,6 +162,7 @@ class OpeningModelTest(ModelFixtures, TestHelpTextMixin,
             'team': 'Team',
             'role': 'Role',
             'description': 'Description',
+            'emp_type': 'Type of employment',
             'remote': 'Remote',
             'responsibilities': 'Responsibilities',
             'qualifications': 'Qualifications',
@@ -124,7 +174,8 @@ class OpeningModelTest(ModelFixtures, TestHelpTextMixin,
             'team': 'Enter the team',
             'role': 'Enter the role',
             'description': 'Enter a description of the opening',
-            'remote': 'Choose the type of employment',
+            'emp_type': 'Choose the type of employment',
+            'remote': 'Remote is accessible',
             'responsibilities': (
                 'Describe the responsibilities '
                 'separated by semicolons'
@@ -159,12 +210,11 @@ class StudioModelTest(ModelFixtures, TestHelpTextMixin,
             'address2': 'City',
             'zip_code': 'Zip Code',
             'phone': 'Phone',
-            'mail': 'Email',
+            'email': 'Email',
             'description': 'Description',
             'image': 'Cover',
-            'openings': 'Openings'
         }
-        cls.field_and_verbose_name = {
+        cls.field_and_help_text = {
             'location': (
                 'Enter the name of the city and '
                 'country separated by commas'
@@ -173,9 +223,9 @@ class StudioModelTest(ModelFixtures, TestHelpTextMixin,
             'address2': 'Enter the city',
             'zip_code': 'Enter the zip code',
             'phone': 'Enter the phone number',
-            'mail': 'Enter e-mail',
+            'email': 'Enter e-mail',
             'description': 'Enter a description of the studio',
-            'image': 'Attach the cover of the news',
+            'image': 'Attach the cover of the studio',
         }
 
     def test_studio_str_method(self):
