@@ -3,21 +3,21 @@
     <div class="wrapper">
         <div class="header__wrapper">
             <div class="header__logo">
-                <a href="#!" class="header__logo-link">BioWare</a>
+                <a href="{% url 'bioware:index' %}" class="header__logo-link">BioWare</a>
             </div>
             <nav class="header__nav">
                 <ul class="header__list">
                     <li class="header__item">
-                        <a href="/about.html" class="header__link">About</a>
+                        <a href="{% url 'bioware:about' %}" class="header__link">About</a>
                     </li>
                     <li class="header__item">
-                        <a href="/games.html" class="header__link">Our games</a>
+                        <a href="{% url 'bioware:game_list' %}" class="header__link">Our games</a>
                     </li>
                     <li class="header__item">
-                        <a href="/careers.html" class="header__link">Careers</a>
+                        <a href="{% url 'bioware:careers' %}" class="header__link">Careers</a>
                     </li>
                     <li class="header__item">
-                        <a href="/contacts.html" class="header__link">Contact</a>
+                        <a href="{% url 'bioware:contacts' %}" class="header__link">Contact</a>
                     </li>
                     <li class="header__item">
                         <a href="https://www.bioware.com/news/" class="header__link">News</a>

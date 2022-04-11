@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,67 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BioWare</title>
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" href="./css/about.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/reset.css' %}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/base.css' %}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/about.css' %}" media="screen">
 </head>
 <body>
     <!-- Header start-->
-    <header class="header">
-        <div class="wrapper">
-            <div class="header__wrapper">
-                <div class="header__logo">
-                    <a href="/" class="header__logo-link">BioWare</a>
-                </div>
-                <nav class="header__nav">
-                    <ul class="header__list">
-                        <li class="header__item">
-                            <a href="/about.html" class="header__link">About</a>
-                        </li>
-                        <li class="header__item">
-                            <a href="/games.html" class="header__link">Our games</a>
-                        </li>
-                        <li class="header__item">
-                            <a href="/careers.html" class="header__link">Careers</a>
-                        </li>
-                        <li class="header__item">
-                            <a href="/contacts.html" class="header__link">Contact</a>
-                        </li>
-                        <li class="header__item">
-                            <a href="https://www.bioware.com/news/" class="header__link">News</a>
-                        </li>
-                        <li class="header__item">
-                            <a href="https://www.origin.com/rus/en-us/store/browse?searchString=bioware" class="header__link">Store</a>
-                        </li>
-                    </ul>
-                    <div class="header__social-networks">
-                        <div class="header__follow_us">
-                            Follow us
-                        </div>
-                        <ul class="header__social-networks-links">
-                            <li>
-                                <a href="http://www.facebook.com/BioWare"><img src="./img/svg/bi_meta.svg" alt="meta-icon"></a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/BioWare"><img src="./img/svg/bi_twitter.svg" alt="twitter-icon"></a>
-                            </li>
-                            <li>
-                                <a href="https://www.youtube.com/channel/UCePE_9yUaBe478B_CuCBcoA"><img
-                                        src="./img/svg/bi_youtube.svg" alt="yotube-icon"></a>
-                            </li>
-                            <li>
-                                <a href="https://www.instagram.com/biowarebase/"><img src="./img/svg/bi_instagram.svg"
-                                        alt="instagram-icon"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <div class="header__burger ">Menu</div>
-            </div>
-        </div>
-    </header>
+    {% include 'bioware/includes/header.html' %}
     <!-- Header end -->
-
     <main>
         <!-- Cover start -->
         <section class="section-block cover">
@@ -126,35 +74,35 @@
                 <ul class="values-list">
                     <li class="values-item">
                         <div class="values-item__pic">
-                            <img src="./img/svg/values-item1.svg" alt="Passion for excellence" class="values-item__img">
+                            <img src="{% static 'bioware/img/svg/values-item1.svg' %}" alt="Passion for excellence" class="values-item__img">
                         </div>
                         <p class="values-item__desc">Passion for excellence</p>
                         <div class="values-item__border"></div>
                     </li>
                     <li class="values-item">
                         <div class="values-item__pic">
-                            <img src="./img/svg/values-item2.svg" alt="Amazing storytelling" class="values-item__img">
+                            <img src="{% static 'bioware/img/svg/values-item2.svg' %}" alt="Amazing storytelling" class="values-item__img">
                         </div>
                         <p class="values-item__desc">Amazing storytelling</p>
                         <div class="values-item__border"></div>
                     </li>
                     <li class="values-item">
                         <div class="values-item__pic">
-                            <img src="./img/svg/values-item3.svg" alt="Humility and integrity" class="values-item__img">
+                            <img src="{% static 'bioware/img/svg/values-item3.svg' %}" alt="Humility and integrity" class="values-item__img">
                         </div>
                         <p class="values-item__desc">Humility and integrity</p>
                         <div class="values-item__border"></div>
                     </li>
                     <li class="values-item">
                         <div class="values-item__pic">
-                            <img src="./img/svg/values-item4.svg" alt="Courageous creativity" class="values-item__img">
+                            <img src="{% static 'bioware/img/svg/values-item4.svg' %}" alt="Courageous creativity" class="values-item__img">
                         </div>
                         <p class="values-item__desc">Courageous creativity</p>
                         <div class="values-item__border"></div>
                     </li>
                     <li class="values-item">
                         <div class="values-item__pic">
-                            <img src="./img/svg/values-item5.svg" alt="Achieving as a team" class="values-item__img">
+                            <img src="{% static 'bioware/img/svg/values-item5.svg' %}" alt="Achieving as a team" class="values-item__img">
                         </div>
                         <p class="values-item__desc">Achieving as a team</p>
                         <div class="values-item__border"></div>
@@ -162,7 +110,7 @@
                     <li class="values-item">
                         <a href="/" class="section-more-btn values__more">
                             Learn more
-                            <img src="./img/svg/link-arrow.svg" alt="btn-arrow" class="section-more-btn__arrow">
+                            <img src="{%static 'bioware/img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                         </a>
                     </li>
                 </ul>
@@ -406,29 +354,29 @@
                     <h3 class="section-caption__title">Our games have won many awards related to the gaming industry.</h3>
                     <ul class="section-caption__desc">
                         <li class="award">
-                            <img src="./img/svg/award1.svg" alt="Canada's Top 100 Employers" class="award__thumb">
+                            <img src="{% static 'bioware/img/svg/award1.svg' %}" alt="Canada's Top 100 Employers" class="award__thumb">
                             <p>Canada's Top 100 Employers</p>
                             <p class="award__year">2018</p>
                         </li>
                         <li class="award">
-                            <img src="./img/svg/award2.svg" alt="Video Game Awards" class="award__thumb">
+                            <img src="{% static 'bioware/img/svg/award2.svg' %}" alt="Video Game Awards" class="award__thumb">
                             <p>Video Game Awards</p>
                             <p class="award__year">2010</p>
                         </li>
                         <li class="award">
-                            <img src="./img/svg/award2.svg" alt="Hall of Fame induction" class="award__thumb">
+                            <img src="{% static 'bioware/img/svg/award2.svg' %}" alt="Hall of Fame induction" class="award__thumb">
                             <p>Hall of Fame induction</p>
                             <p class="award__year">2010</p>
                         </li>
                         <li class="award award_nth-last">
-                            <img src="./img/svg/award2.svg" alt="Game Developer of the Year" class="award__thumb">
+                            <img src="{% static 'bioware/img/svg/award2.svg' %}" alt="Game Developer of the Year" class="award__thumb">
                             <p>Game Developer of the Year</p>
                             <p class="award__year">2008</p>
                         </li>
                         <li>
                             <a href="#!" class="section-more-btn">
                                 See full list of awards
-                                <img src="./img/svg/link-arrow.svg" alt="btn-arrow" class="section-more-btn__arrow">
+                                <img src="{%static 'bioware/img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                             </a>
                         </li>
                     </ul>
@@ -457,7 +405,7 @@
                             T5H 0E7
                         </p>
                         <p class="studios-card__phone">+1 780 430 0164</p>
-                        <a href="./contacts.html#edmond" class="studios-card__link"></a>
+                        <a href="bioware/contacts.html#edmond" class="studios-card__link"></a>
                     </div>
                     <div class="studios-card">
                         <div class="studios-card__lg-rectangle">
@@ -466,7 +414,7 @@
                         <div class="studios-card__sm-rectangle"></div>
                         <div class="studios-card__sub-rectangle"></div>
                         <div class="studios-card__photo">
-                            <img src="./img/studios-austin.jpg" alt="Austin">
+                            <img src="bioware/img/studios-austin.jpg" alt="Austin">
                         </div>
                         <p class="studios-card__address">
                             7700 W PARMER LN STE C200<br>
@@ -478,100 +426,28 @@
                     </div>
                 </div>
                 <div class="studios__more">
-                    <a href="./contacts.html" class="section-more-btn">
+                    <a href="{% url 'bioware:contacts' %}" class="section-more-btn">
                         See contacts
-                        <img src="./img/svg/link-arrow-black.svg" alt="btn-arrow" class="section-more-btn__arrow">
+                        <img src="{% static 'bioware/img/svg/link-arrow-black.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                     </a>
                 </div>
             </div>
         </section>
         <!-- Studios end -->
         <div class="wrapper">
-            <a href="./games.html" class="go-to-other-page">
+            <a href="{% url 'bioware:game_list' %}" class="go-to-other-page">
                 Go to our games
-                <img src="./img/svg/link-arrow-lg.svg" alt="btn-arrow" class="go-to-other-page__arrow">
+                <img src="{% static 'bioware/img/svg/link-arrow-lg.svg' %}" alt="btn-arrow" class="go-to-other-page__arrow">
             </a>
         </div>
     </main>
     <!-- Footer start-->
-    <footer class="footer">
-        <div class="wrapper">
-            <div class="footer__wrapper">
-                <div class="footer__container">
-                    <div class="footer__logo">
-                        <a href="./index.html" class="footer__logo-link">BioWare</a>
-                    </div>
-                    <div class="footer__follow_us">
-                        Follow us
-                    </div>
-                    <ul class="footer__social_networks">
-                        <li>
-                            <a href="http://www.facebook.com/BioWare"><img src="./img/svg/bi_meta.svg" alt="meta-icon"></a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/BioWare"><img src="./img/svg/bi_twitter.svg" alt="twitter-icon"></a>
-                        </li>
-                        <li>
-                            <a href="https://www.youtube.com/channel/UCePE_9yUaBe478B_CuCBcoA"><img
-                                    src="./img/svg/bi_youtube.svg" alt="yotube-icon"></a>
-                        </li>
-                        <li>
-                            <a href="https://www.instagram.com/biowarebase/"><img src="./img/svg/bi_instagram.svg"
-                                    alt="instagram-icon"></a>
-                        </li>
-                    </ul>
-                </div>
-
-                <nav class="footer__nav">
-                    <ul class="footer__main-list">
-                        <li class="footer__item">
-                            <a href="./about.html">About</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="./games.html">Our games</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Careers</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="./contacts.html">Contact</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">News</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Store</a>
-                        </li>
-                    </ul>
-                    <ul class="footer__legal-list">
-                        <li class="footer__item">
-                            <a href="#!">User Agreement</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Privacy policy</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Cookie policy</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Legal</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Support</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Press</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="footer__license">©2021 Electronic Arts Inc. All rights reserved.</div>
-        </div>
+    {% include 'bioware/includes/footer.html' %}
     </footer>
     <!-- Footer end -->
-    <script src="./scripts/main.js"></script>
-    <script src="./scripts/jquery.min.js"></script>
-    <script src="./scripts/jquery.timelinr-0.9.7.js"></script>
+    <script src="{% static 'bioware/scripts/main.js' %}"></script>
+    <script src="{% static 'bioware/scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'bioware/scripts/jquery.timelinr-0.9.7.js' %}"></script>
     <script>
         $(function(){
         $().timelinr({
