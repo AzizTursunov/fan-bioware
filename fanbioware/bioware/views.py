@@ -8,34 +8,55 @@ def index(request):
     news_list = News.objects.all()[:4]
     context = {
         'game_list': game_list,
-        'news_list': news_list
+        'news_list': news_list,
+        'title': 'Bioware'
     }
     return render(request, template, context)
 
 
 def about(request):
     template = 'bioware/about.html'
-    return render(request, template)
+    studio_list = Studio.objects.all()
+    context = {
+        'studio_list': studio_list,
+        'title': 'About'
+    }
+    return render(request, template, context)
 
 
 def game_list(request):
     template = 'bioware/games.html'
     game_list = Game.objects.all()
-    return render(request, template, {'game_list': game_list})
+    context = {
+        'game_list': game_list,
+        'title': 'Our games'
+    }
+    return render(request, template, context)
 
 
 def game_detail(request, game_slug):
     template = f'bioware/{game_slug}.html'
-    return render(request, template)
+    context = {
+        'title': game_slug.capitalize().split('-')
+    }
+    return render(request, template, context)
 
 
 def careers(request):
     template = 'bioware/careers.html'
     studio_list = Studio.objects.prefetch_related('openings').all()
-    return render(request, template, {'studio_list': studio_list})
+    context = {
+        'studio_list': studio_list,
+        'title': 'Careers'
+    }
+    return render(request, template, context)
 
 
 def contacts(request):
     template = 'bioware/contacts.html'
     studio_list = Studio.objects.all()
-    return render(request, template, {'studio_list': studio_list})
+    context = {
+        'studio_list': studio_list,
+        'title': 'Contacts'
+    }
+    return render(request, template, context)
