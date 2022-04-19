@@ -33,8 +33,12 @@ class Game(models.Model):
         help_text='Enter the name of the game',
     )
     slug = models.SlugField(unique=True, verbose_name='URL')
-    description = models.CharField(
+    intro = models.CharField(
         max_length=650,
+        verbose_name='Intro',
+        help_text='Enter the game intro'
+    )
+    description = models.TextField(
         verbose_name='Description',
         help_text='Enter a description of the game'
     )
