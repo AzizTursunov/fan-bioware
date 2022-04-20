@@ -1,11 +1,11 @@
 from django.shortcuts import get_object_or_404, render
-from .models import Game, News, Studio
+from .models import Game, News, Studio, Opening
 
 
 def index(request):
     template = 'bioware/index.html'
     game_list = Game.objects.all()
-    news_list = News.objects.all()[:4]
+    news_list = News.objects.filter(is_publicated=True)[:4]
     context = {
         'game_list': game_list,
         'news_list': news_list,
@@ -44,9 +44,9 @@ def game_detail(request, game_slug):
 
 def careers(request):
     template = 'bioware/careers.html'
-    studio_list = Studio.objects.prefetch_related('openings').all()
+    opening_list = Opening.objects.all()
     context = {
-        'studio_list': studio_list,
+        'opening_list': opening_list,
         'title': 'Careers'
     }
     return render(request, template, context)
