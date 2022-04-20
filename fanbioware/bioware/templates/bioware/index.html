@@ -182,20 +182,20 @@
                 </div>
                 <ul class="news-cards">
                     {% for news in news_list %}
-                    {% if news.is_publicated %}
+                    <!--{% if news.is_publicated %}-->
                     <li class="news-card">
                         <a href="#!" class="news-card__link"></a>
                         <div class="news-card__picture">
                             <img src="{{news.image.url}}" alt="news_image1" class="news-card__img">
                         </div>
                         <div class="news-card__title">{{news.title}}</div>
-                        <div class="news-card__text">{{news.text}}</div>
+                        <div class="news-card__text">{{news.intro}}</div>
                         <div class="news-card__caption">
                             <div class="news-card__data">{{news.pub_date}}</div>
                             <div class="news-card__arrow"></div>
                         </div>
                     </li>
-                    {% endif %}
+                    <!--{% endif %}-->
                     {% endfor %}
                 </ul>
                 <div class="news__more">

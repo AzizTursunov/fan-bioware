@@ -1,71 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" type="text/css" href="./slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css"/>
-    <link rel="stylesheet" href="./css/careers.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/slick/slick-theme.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/careers.css' %}">
     <title>Careers</title>
 </head>
 <body>
     <!-- Header start-->
-    <header class="header">
-        <div class="wrapper">
-            <div class="header__wrapper">
-                <div class="header__logo">
-                    <a href="/" class="header__logo-link">BioWare</a>
-                </div>
-                <nav class="header__nav">
-                    <ul class="header__list">
-                        <li class="header__item">
-                            <a href="/about.html" class="header__link">About</a>
-                        </li>
-                        <li class="header__item">
-                            <a href="/games.html" class="header__link">Our games</a>
-                        </li>
-                        <li class="header__item">
-                            <a href="/careers.html" class="header__link">Careers</a>
-                        </li>
-                        <li class="header__item">
-                            <a href="/contacts.html" class="header__link">Contact</a>
-                        </li>
-                        <li class="header__item">
-                            <a href="https://www.bioware.com/news/" class="header__link">News</a>
-                        </li>
-                        <li class="header__item">
-                            <a href="https://www.origin.com/rus/en-us/store/browse?searchString=bioware" class="header__link">Store</a>
-                        </li>
-                    </ul>
-                    <div class="header__social-networks">
-                        <div class="header__follow_us">
-                            Follow us
-                        </div>
-                        <ul class="header__social-networks-links">
-                            <li>
-                                <a href="http://www.facebook.com/BioWare"><img src="./img/svg/bi_meta.svg" alt="meta-icon"></a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/BioWare"><img src="./img/svg/bi_twitter.svg" alt="twitter-icon"></a>
-                            </li>
-                            <li>
-                                <a href="https://www.youtube.com/channel/UCePE_9yUaBe478B_CuCBcoA"><img
-                                        src="./img/svg/bi_youtube.svg" alt="yotube-icon"></a>
-                            </li>
-                            <li>
-                                <a href="https://www.instagram.com/biowarebase/"><img src="./img/svg/bi_instagram.svg"
-                                        alt="instagram-icon"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <div class="header__burger ">Menu</div>
-            </div>
-        </div>
-    </header>
+    {% include 'bioware/includes/header.html' %}
     <!-- Header end -->
 
     <main>
@@ -79,7 +28,7 @@
                 <p class="cover__desc">We’re passionate about quality in our products and in our workplace.</p>
             </div>
             <div class="cover__pic">
-                <img src="./img/careers-intro.jpg" alt="Careers" class="cover__img">
+                <img src="{% static 'bioware/img/careers-intro.jpg' %}" alt="Careers" class="cover__img">
             </div>
         </div>
     </section>
@@ -123,320 +72,41 @@
                 <div class="section-caption__title black-text">Our story continues to evolve. It is our goal to create a work environment that is hardworking and fun.We invite you to join us on the journey.</div>
                 <div class="section-caption__desc black-text">We value the creativity, innovation, and passion that our team members put in to develop and ship critically acclaimed games. We provide a stimulating environment that encourages sharing of skills, knowledge, and continuous learning and development.</div>
             </div>
+            {% regroup opening_list by studio as studio_list %}
+            {% for studio in studio_list %}
             <div class="studio">
-                <h3 class="studio__location">Edmonton, Canada</h3>
+                <h3 class="studio__location">{{ studio.grouper }}</h3>
                 <h3 class="studio__team">Team</h3>
                 <h3 class="studio__role">Role</h3>
             </div>
-            <div class="team-list">
+            {% regroup studio.list by team as team_list%}
+            <div class="team-list">{% for team in team_list %}
                 <div class="team-item"  onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
                     <div class="team-item__caption" onclick="click_action(this)">
-                        <div class="team-item__name">Animation</div>
-                        <div class="team-item__openings-count">5 job openings</div>
+                        <div class="team-item__name">{{ team.grouper }}</div>
+                        <div class="team-item__openings-count">
+                            {% if team.list|length == 1 %}
+                            1 job opening
+                            {% else %}
+                            {{ team.list|length }} job openings
+                            {% endif %}
+                        </div>
                     </div>
                     <div class="role-list">
+                        {% for opening in team.list %}
                         <div class="role-item">
                             <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Level Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Level Designer to create original and defined content for specific levels, systems, and gameplay.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Level Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Level Designer to create original and defined content for specific levels, systems, and gameplay.</p>
+                                <h4 class="role-item__title">{{ opening.role }}</h4>
+                                <p class="role-item__desc">{{opening.description}}</p>
                                 <a href="#!" class="role-item__more">Learn more</a>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
-                <div class="team-item" onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
-                    <div class="team-item__caption" onclick="click_action(this)">
-                        <div class="team-item__name">Art</div>
-                        <div class="team-item__openings-count">4 job openings</div>
-                    </div>
-                    <div class="role-list">
-                        <div class="role-item">
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Level Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Level Designer to create original and defined content for specific levels, systems, and gameplay.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item" onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
-                    <div class="team-item__caption" onclick="click_action(this)">
-                        <div class="team-item__name">Development Director</div>
-                        <div class="team-item__openings-count">1 job openings</div>
-                    </div>
-                    <div class="role-list">
-                        <div class="role-item">
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item" onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
-                    <div class="team-item__caption" onclick="click_action(this)">
-                        <div class="team-item__name">Editor</div>
-                        <div class="team-item__openings-count">1 job openings</div>
-                    </div>
-                    <div class="role-list">
-                        <div class="role-item">
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item"  onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
-                    <div class="team-item__caption" onclick="click_action(this)">
-                        <div class="team-item__name">Game Design</div>
-                        <div class="team-item__openings-count">4 job openings</div>
-                    </div>
-                    <div class="role-list">
-                        <div class="role-item">
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Level Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Level Designer to create original and defined content for specific levels, systems, and gameplay.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item"  onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
-                    <div class="team-item__caption" onclick="click_action(this)">
-                        <div class="team-item__name">Production</div>
-                        <div class="team-item__openings-count">1 job openings</div>
-                    </div>
-                    <div class="role-list">
-                        <div class="role-item">
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item"  onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
-                    <div class="team-item__caption" onclick="click_action(this)">
-                        <div class="team-item__name">Programming</div>
-                        <div class="team-item__openings-count">4 job openings</div>
-                    </div>
-                    <div class="role-list">
-                        <div class="role-item">
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Level Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Level Designer to create original and defined content for specific levels, systems, and gameplay.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Level Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Level Designer to create original and defined content for specific levels, systems, and gameplay.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-            <div class="studio">
-                <h3 class="studio__location">Austin, United States</h3>
-                <h3 class="studio__team">Team</h3>
-                <h3 class="studio__role">Role</h3>
-            </div>
-            <div class="team-list">
-                <div class="team-item" onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
-                    <div class="team-item__caption" onclick="click_action(this)">
-                        <div class="team-item__name">Animation</div>
-                        <div class="team-item__openings-count">4 job openings</div>
-                    </div>
-                    <div class="role-list">
-                        <div class="role-item">
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Level Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Level Designer to create original and defined content for specific levels, systems, and gameplay.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item" onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
-                    <div class="team-item__caption" onclick="click_action(this)">
-                        <div class="team-item__name">Art</div>
-                        <div class="team-item__openings-count">4 job openings</div>
-                    </div>
-                    <div class="role-list">
-                        <div class="role-item">
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item" onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
-                    <div class="team-item__caption" onclick="click_action(this)">
-                        <div class="team-item__name">Game Designer</div>
-                        <div class="team-item__openings-count">4 job openings</div>
-                    </div>
-                    <div class="role-list">
-                        <div class="role-item">
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Level Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Level Designer to create original and defined content for specific levels, systems, and gameplay.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item" onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
-                    <div class="team-item__caption" onclick="click_action(this)">
-                        <div class="team-item__name">Programming</div>
-                        <div class="team-item__openings-count">6 job openings</div>
-                    </div>
-                    <div class="role-list">
-                        <div class="role-item">
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Level Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Level Designer to create original and defined content for specific levels, systems, and gameplay.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Cinematic Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Cinematic Designer to create interactive cinematic conversations that translate scripted scenes into engaging player experiences.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                            <div class="role-item__text">
-                                <h4 class="role-item__title">Technical Designer</h4>
-                                <p class="role-item__desc">BioWare is searching for a Technical Designer to create reusable content pieces used by our Design team to create high-quality mission content.</p>
-                                <a href="#!" class="role-item__more">Learn more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
     <!-- Openings end -->
@@ -451,13 +121,13 @@
             </div>
             <div class="graduates-caption">
                 <div class="graduates-caption__pic">
-                    <img src="./img/careers-graduates-pic.jpg" alt="Graduates" class="graduates-caption__img">
+                    <img src="{% static 'bioware/img/careers-graduates-pic.jpg' %}" alt="Graduates" class="graduates-caption__img">
                 </div>
                 <div class="graduates-caption__desc">
                     <p>All our interns are treated like established members of the team and contribute as much as regular employees. Interns and graduates are the future of BioWare.</p>
                     <a href="#!" class="section-more-btn about__more">
                         Apply now
-                        <img src="./img/svg/link-arrow.svg" alt="" class="section-more-btn__arrow">
+                        <img src="{% static 'bioware/img/svg/link-arrow.svg' %}" alt="" class="section-more-btn__arrow">
                     </a>
                 </div>
             </div>
@@ -475,84 +145,11 @@
     </main>
 
     <!-- Footer start-->
-    <footer class="footer">
-        <div class="wrapper">
-            <div class="footer__wrapper">
-                <div class="footer__container">
-                    <div class="footer__logo">
-                        <a href="./index.html" class="footer__logo-link">BioWare</a>
-                    </div>
-                    <div class="footer__follow_us">
-                        Follow us
-                    </div>
-                    <ul class="footer__social_networks">
-                        <li>
-                            <a href="http://www.facebook.com/BioWare"><img src="./img/svg/bi_meta.svg" alt="meta-icon"></a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/BioWare"><img src="./img/svg/bi_twitter.svg" alt="twitter-icon"></a>
-                        </li>
-                        <li>
-                            <a href="https://www.youtube.com/channel/UCePE_9yUaBe478B_CuCBcoA"><img
-                                    src="./img/svg/bi_youtube.svg" alt="yotube-icon"></a>
-                        </li>
-                        <li>
-                            <a href="https://www.instagram.com/biowarebase/"><img src="./img/svg/bi_instagram.svg"
-                                    alt="instagram-icon"></a>
-                        </li>
-                    </ul>
-                </div>
-
-                <nav class="footer__nav">
-                    <ul class="footer__main-list">
-                        <li class="footer__item">
-                            <a href="./about.html">About</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="./games.html">Our games</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Careers</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="./contacts.html">Contact</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">News</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Store</a>
-                        </li>
-                    </ul>
-                    <ul class="footer__legal-list">
-                        <li class="footer__item">
-                            <a href="#!">User Agreement</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Privacy policy</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Cookie policy</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Legal</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Support</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="#!">Press</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="footer__license">©2021 Electronic Arts Inc. All rights reserved.</div>
-        </div>
-    </footer>
+    {% include 'bioware/includes/footer.html' %}
     <!-- Footer end -->
-    <script src="./scripts/main.js"></script>
-    <script src="./scripts/jquery.min.js"></script>
-    <script src="./slick/slick.min.js"></script>
-    <script src="./scripts/careers.js"></script>
+    <script src="{% static 'bioware/scripts/main.js' %}"></script>
+    <script src="{% static 'bioware/scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'bioware/slick/slick.min.js' %}"></script>
+    <script src="{% static 'bioware/scripts/careers.js' %}"></script>
 </body>
 </html>
