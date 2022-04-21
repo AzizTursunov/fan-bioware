@@ -36,8 +36,9 @@ def game_list(request):
 
 def game_detail(request, game_slug):
     template = f'bioware/{game_slug}.html'
+    game_title = ' '.join([word.capitalize() for word in game_slug.split('-')])
     context = {
-        'title': game_slug.capitalize().split('-')
+        'title': game_title
     }
     return render(request, template, context)
 
