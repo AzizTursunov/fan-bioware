@@ -79,7 +79,7 @@
                 <h3 class="studio__team">Team</h3>
                 <h3 class="studio__role">Role</h3>
             </div>
-            {% regroup studio.list by team as team_list%}
+            {% regroup studio.list by team as team_list %}
             <div class="team-list">{% for team in team_list %}
                 <div class="team-item"  onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
                     <div class="team-item__caption" onclick="click_action(this)">
