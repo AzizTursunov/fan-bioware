@@ -229,3 +229,31 @@ class Studio(models.Model):
     def __str__(self):
         """Return the location of the Game."""
         return self.location
+
+
+class GameSliderImage(models.Model):
+    game = models.ForeignKey(
+        Game,
+        related_name='Slide',
+        null=True, blank=None,
+        on_delete=models.CASCADE
+    )
+    image = models.ImageField(
+        verbose_name='Slide',
+        help_text='Attach the slide',
+        upload_to='bioware/slider/games/'
+    )
+
+
+class StudioSliderImage(models.Model):
+    studio = models.ForeignKey(
+        Studio,
+        related_name='Slide',
+        null=True, blank=None,
+        on_delete=models.CASCADE
+    )
+    image = models.ImageField(
+        verbose_name='Slide',
+        help_text='Attach the slide',
+        upload_to='bioware/slider/studios/'
+    )
