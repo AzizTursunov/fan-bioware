@@ -8,12 +8,12 @@ class Game(models.Model):
     class Platforms(models.TextChoices):
         """Creating platform choice to Game model."""
 
-        XBOX_ONE = 'XB_ONE', 'Xbox One Series'
-        XBOX_360 = 'XB_360', 'Xbox 360 Series'
+        XBOX_ONE = 'Xbox One', 'Xbox One Series'
+        XBOX_360 = 'Xbox 360', 'Xbox 360 Series'
         Windows = 'PC', 'Windows PC'
-        PLAYSTATION_3 = 'PS_3', 'PlayStation 3'
-        PLAYSTATION_4 = 'PS_4', 'PlayStation 4'
-        PLAYSTATION_5 = 'PS_5', 'PlayStation 5'
+        PLAYSTATION_3 = 'PS3', 'PlayStation 3'
+        PLAYSTATION_4 = 'PS4', 'PlayStation 4'
+        PLAYSTATION_5 = 'PS5', 'PlayStation 5'
 
     class Genres(models.TextChoices):
         """Creating genre choise to Game model."""
@@ -65,6 +65,27 @@ class Game(models.Model):
         default=Genres.RPG
     )
     is_online = models.BooleanField(default=True)
+    origin_url = models.URLField(
+        blank=True, null=True,
+        verbose_name='Origin',
+        help_text='Enter the link to the Origin'
+    )
+    ps_url = models.URLField(
+        blank=True, null=True,
+        verbose_name='PS',
+        help_text='Enter the link to PS Store'
+    )
+    xbox_url = models.URLField(
+        blank=True, null=True,
+        verbose_name='XboX',
+        help_text='Enter the link to the XboX Store'
+    )
+    steam_url = models.URLField(
+        blank=True, null=True,
+        verbose_name='Steam',
+        help_text='Enter the link to the Steam'
+    )
+
     is_released = models.BooleanField(default=False)
 
     class Meta:
@@ -75,6 +96,28 @@ class Game(models.Model):
     def __str__(self):
         """Return the title of the Game."""
         return self.title
+
+    @property
+    def platforms_available(self):
+        """Returns available platforms."""
+        platforms = []
+        if 'PC' in self.platforms:
+            pc_stores = []
+            store_vs_url = {'Origin': self.origin_url, 'Steam': self.steam_url}
+            for store, url in store_vs_url.items():
+                if url:
+                    pc_stores.append(store)
+            pc_text = 'PC ({})'.format(', '.join(pc_stores))
+            platforms.append(pc_text)
+        console_platforms = [
+            platform for platform in self.platforms if platform != 'PC'
+        ]
+        if console_platforms:
+            console_text = 'Console ({}, compatible with next gen)'.format(
+                ', '.join(console_platforms)
+            )
+            platforms.append(console_text)
+        return platforms
 
 
 class News(models.Model):
