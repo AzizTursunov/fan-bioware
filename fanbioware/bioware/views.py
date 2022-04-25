@@ -36,7 +36,7 @@ def game_list(request):
 
 def game_detail(request, game_slug):
     template = f'bioware/{game_slug}.html'
-    game_title = ' '.join([word.capitalize() for word in game_slug.split('-')])
+    game_title = ' '.join(game_slug.split('-'))
     game = get_object_or_404(Game, slug=game_slug)
     news = News.objects.filter(game=game)[:4]
     main_news = news.first()
@@ -45,7 +45,7 @@ def game_detail(request, game_slug):
         'title': game_title,
         'game': game,
         'main_news': main_news,
-        'news_list': news_list
+        'news_list': news_list,
     }
     return render(request, template, context)
 
