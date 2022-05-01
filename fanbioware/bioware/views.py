@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render
+from django.db.models import Count, Sum
 from .models import Game, News, Studio, Opening
 
 
@@ -6,9 +7,16 @@ def index(request):
     template = 'bioware/index.html'
     game_list = Game.objects.all()
     news_list = News.objects.filter(is_publicated=True)[:4]
+    openings = Opening.objects.values('team').annotate(
+        roles_count=Count('role')
+    )
+    teams_count = openings.count()
+    roles_count = openings.aggregate(Sum('roles_count'))
     context = {
         'game_list': game_list,
         'news_list': news_list,
+        'teams_count': teams_count,
+        'roles_count': roles_count.get('roles_count__sum', 0),
         'title': 'Bioware'
     }
     return render(request, template, context)
