@@ -1,5 +1,8 @@
+import os.path
+from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Count, Sum
+from fanbioware.settings import TEMPLATES_DIR
 from .models import Game, News, Studio, Opening
 
 
@@ -43,7 +46,11 @@ def game_list(request):
 
 
 def game_detail(request, game_slug):
-    template = f'bioware/{game_slug}.html'
+    template_path = os.path.join(TEMPLATES_DIR, f'bioware/{game_slug}.html')
+    if os.path.isfile(template_path):
+        template = f'bioware/{game_slug}.html'
+    else:
+        raise Http404
     game_title = ' '.join(game_slug.split('-'))
     game = get_object_or_404(Game, slug=game_slug)
     news = News.objects.filter(game=game)[:4]
