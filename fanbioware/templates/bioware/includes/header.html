@@ -1,0 +1,54 @@
+{% load static %}
+<header class="header">
+    <div class="wrapper">
+        <div class="header__wrapper">
+            <div class="header__logo">
+                <a href="{% url 'bioware:index' %}" class="header__logo-link">BioWare</a>
+            </div>
+            <nav class="header__nav">
+                <ul class="header__list">
+                    <li class="header__item">
+                        <a href="{% url 'bioware:about' %}" class="header__link">About</a>
+                    </li>
+                    <li class="header__item">
+                        <a href="{% url 'bioware:game_list' %}" class="header__link">Our games</a>
+                    </li>
+                    <li class="header__item">
+                        <a href="{% url 'bioware:careers' %}" class="header__link">Careers</a>
+                    </li>
+                    <li class="header__item">
+                        <a href="{% url 'bioware:contacts' %}" class="header__link">Contact</a>
+                    </li>
+                    <li class="header__item">
+                        <a href="https://www.bioware.com/news/" class="header__link">News</a>
+                    </li>
+                    <li class="header__item">
+                        <a href="https://www.origin.com/rus/en-us/store/browse?searchString=bioware" class="header__link">Store</a>
+                    </li>
+                </ul>
+                <div class="header__social-networks">
+                    <div class="header__follow_us">
+                        Follow us
+                    </div>
+                    <ul class="header__social-networks-links">
+                        <li>
+                            <a href="http://www.facebook.com/BioWare"><img src="{% static 'bioware/img/svg/bi_meta.svg' %}" alt="meta-icon"></a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/BioWare"><img src="{% static 'bioware/img/svg/bi_twitter.svg' %}" alt="twitter-icon"></a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCePE_9yUaBe478B_CuCBcoA"><img
+                                    src="{% static 'bioware/img/svg/bi_youtube.svg' %}" alt="yotube-icon"></a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/biowarebase/"><img src="{% static 'bioware/img/svg/bi_instagram.svg' %}"
+                                    alt="instagram-icon"></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="header__burger ">Menu</div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/base.css' %}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'bioware/slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/slick/slick-theme.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/game_detail.css' %}">
+    <title>{{title|title}}</title>
+</head>
+<body>
+    <!-- Header start-->
+    {% include 'bioware/includes/header.html' %}
+    <!-- Header end -->
+    <main>
+        <!-- Cover start -->
+        {% include 'bioware/includes/mass-effect-legendary-edition/cover.html' %}
+        <!-- Cover end -->
+
+        <!-- About start -->
+        <section class="section-block about">
+            <div class="wrapper">
+                <div class="section-frame black-frame-line">About the game</div>
+                <div class="section-caption custom-caption">
+                    <h3 class="section-caption__title">{{game.intro}}</h3>
+                    <div class="about-cards">
+                        {{game.description|linebreaks}}
+                        <div class="about-card__caption">
+                            <h6 class="about-card__title">Release	date</h6>
+                            <p class="about-card__info">{{game.rel_date}}</p>
+                        </div>
+                        <div class="about-card__caption">
+                            <h6 class="about-card__title">Platforms</h6>
+                            <p class="about-card__info">{{game.platforms}}</p>
+                        </div>
+                        </div>
+                    </div>
+                <div class="slider">
+                    {% for slide in game.Slide.all %}
+                    <div><img src="{{slide.image.url}}"></div>
+                    {% endfor %}
+                </div>
+                <a href="#!" class="section-more-btn about__more">
+                    Watch the trailer
+                    <img src="{% static 'bioware/img/svg/link-arrow.svg' %}" alt="" class="section-more-btn__arrow">
+                </a>
+            </div>
+        </section>
+        <!-- About end -->
+
+        {% include 'bioware/includes/mass-effect-legendary-edition/content.html' %}
+
+        <!-- News start -->
+        <section class="section-block news">
+            <div class="wrapper">
+                <div class="section-frame black-frame-line">News</div>
+                <div class="section-caption">
+                    <h3 class="section-caption__title">Get the latest information about {{game.title}}.</h3>
+                </div>
+                <ul class="news-cards">
+                    <li class="news-card news-card_main-card">
+                        <div class="news-card__pic">
+                            <img src="{{main_news.image.url}}" alt="main-news-pic" class="news-card__img">
+                        </div>
+                        <div class="news-card__desc">
+                            <h6 class="news-card__date">{{main_news.pub_date}}</h6>
+                            <h5 class="news-card__title">{{main_news.title}}</h5>
+                            <p class="news-card__text">{{main_news.intro}}</p>
+                        </div>
+                        <a href="#!" class="news-card__link"></a>
+                    </li>
+                    {% for news in news_list %}
+                    <li class="news-card {% if forloop.counter == 1 %} news-card_second-card {% elif forloop.counter == 2 %} news-card_third-card {% else %} news-card-last-card {% endif %}">
+                        <div class="news-card__pic">
+                            <img src="{{news.image.url}}" alt="news-pic-{forloop.counter+1}" class="news-card__img">
+                        </div>
+                        <div class="news-card__desc">
+                            <h6 class="news-card__date">{{news.pub_date}}</h6>
+                            <h5 class="news-card__title">{{news.title}}</h5>
+                            <p class="news-card__text">{{news.intro}}</p>
+                        </div>
+                        <a href="#!" class="news-card__link"></a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="news__more">
+                    <a href="#!" class="section-more-btn news__more">
+                        Load more
+                        <img src="{% static 'bioware/img/svg/link-arrow.svg' %}" alt="" class="section-more-btn__arrow">
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- News end -->
+
+        <!-- Join-us start -->
+        <section class="section-block">
+            <div class="wrapper">
+                <div class="section-frame black-frame-line">Join us</div>
+                <div class="section-caption join-us__caption">
+                    <h3 class="section-caption__title ">
+                        {{game.title}} is now available on {{game.platforms_available|join:", "}}. Please, select your platform.
+                    </h3>
+                    <div class="join-us-platforms">
+                        {% if game.origin_url %}
+                        <div class="join-us-platform origin-platform">
+                            <img src="{% static 'bioware/img/svg/game-detail-origin-thumb.svg' %}" alt="Origin">
+                            Origin
+                            <a href="{{game.origin_url}}" class="join-us-platform__link"></a>
+                        </div>
+                        {% endif %}
+                        {% if game.steam_url %}
+                        <div class="join-us-platform steam-platform">
+                            <img src="{% static 'bioware/img/svg/game-detail-steam-thumb.svg' %}" alt="Steam">
+                            Steam
+                            <a href="{{game.steam_url}}" class="join-us-platform__link"></a>
+                        </div>
+                        {% endif %}
+                        {% if game.ps_url %}
+                        <div class="join-us-platform ps-platform">
+                            <img src="{% static 'bioware/img/svg/game-detail-ps-thumb.svg' %}" alt="PS">
+                            PS
+                            <a href="{{game.ps_url}}" class="join-us-platform__link"></a>
+                        </div>
+                        {% endif %}
+                        {% if game.xbox_url %}
+                        <div class="join-us-platform xbox-platform">
+                            <img src="{% static 'bioware/img/svg/game-detail-xbox-thumb.svg' %}" alt="Xbox">
+                            Xbox
+                            <a href="{{game.xbox_url}}" class="join-us-platform__link"></a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Join-us end -->
+
+        <div class="wrapper">
+            <a href="#!" class="go-to-other-page">
+                Go to Dragon Age
+                <img src="{% static 'bioware/img/svg/link-arrow-lg.svg' %}" alt="" class="go-to-other-page__arrow">
+            </a>
+        </div>
+    </main>
+    <!-- Footer start-->
+    {% include 'bioware/includes/footer.html' %}
+    <!-- Footer end -->
+    <script src="{% static 'bioware/scripts/main.js' %}"></script>
+    <script src="{% static 'bioware/scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'bioware/slick/slick.min.js' %}"></script>
+    <script src="{% static 'bioware/scripts/game-detail.js' %}"></script>
+</body>
+</html>

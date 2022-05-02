@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/slick/slick-theme.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/careers.css' %}">
+    <title>Careers</title>
+</head>
+<body>
+    <!-- Header start-->
+    {% include 'bioware/includes/header.html' %}
+    <!-- Header end -->
+
+    <main>
+    <!-- Cover start -->
+    <section class="section-block">
+        <div class="wrapper">
+            <div class="cover__wrap">
+                <h1 class="cover__title cover__title_first-line">Create</h1>
+                <h1 class="cover__title cover__title_second-line">something</h1>
+                <h1 class="cover__title cover__title_third-line">Amazing</h1>
+                <p class="cover__desc">We’re passionate about quality in our products and in our workplace.</p>
+            </div>
+            <div class="cover__pic">
+                <img src="{% static 'bioware/img/careers-intro.jpg' %}" alt="Careers" class="cover__img">
+            </div>
+        </div>
+    </section>
+    <!-- Cover end-->
+
+    <!-- Culture-perks start-->
+        <section class="section-block culture-perks">
+            <div class="wrapper">
+                <div class="section-frame black-frame-line">Culture & Perks</div>
+                <div class="section-caption culture-perks__caption">
+                    <h3 class="section-caption__title">We believe a work and life balance is essential to the success of our employees.</h3>
+                    <div class="section-caption__desc culture-perks__desc">
+                        <p>
+                           To make the best stories you can play, BioWare has to be the best place you can work. We strive to create a healthy work and life balance to take care of your needs under our roof and under yours.
+                        </p>
+                        <p>We offer our employees great, competitive benefits including dental and medical coverage, annual bonuses, stock options or restricted stock units, three weeks accrued paid vacation.</p>
+                        <p>Also you can receive bonus winter holiday vacation time, daily breakfasts, free games, game discounts on all EA games, social activities, discounted gym memberships, and much more!</p>
+                    </div>
+                </div>
+                <div class="benefits-slider">
+                    <div class="benefits-slider__slide"><p>Free breakfast</p></div>
+                    <div class="benefits-slider__slide"><p>Health coverage</p></div>
+                    <div class="benefits-slider__slide"><p>Annual bonuses</p></div>
+                    <div class="benefits-slider__slide"><p>Staff events</p></div>
+                    <div class="benefits-slider__slide"><p>Paid vacation</p></div>
+                    <div class="benefits-slider__slide benefits-slider-second-line"><p>Education assistance</p></div>
+                    <div class="benefits-slider__slide benefits-slider-second-line"><p>Discounts on games and merch</p></div>
+                    <div class="benefits-slider__slide benefits-slider-second-line"><p>Games room</p></div>
+                    <div class="benefits-slider__slide benefits-slider-second-line"><p>Staff library</p></div>
+                    <div class="benefits-slider__slide benefits-slider-second-line"><p>Gym passes</p></div>
+                </div>
+            </div>
+        </section>
+    <!-- Culture-perks end-->
+
+    <!-- Openings start -->
+    <section class="openings white-section" id="openings">
+        <div class="wrapper">
+            <div class="section-frame blue-frame white-frame-line">Current openings</div>
+            <div class="section-caption">
+                <div class="section-caption__title black-text">Our story continues to evolve. It is our goal to create a work environment that is hardworking and fun.We invite you to join us on the journey.</div>
+                <div class="section-caption__desc black-text">We value the creativity, innovation, and passion that our team members put in to develop and ship critically acclaimed games. We provide a stimulating environment that encourages sharing of skills, knowledge, and continuous learning and development.</div>
+            </div>
+            {% regroup opening_list by studio as studio_list %}
+            {% for studio in studio_list %}
+            <div class="studio">
+                <h3 class="studio__location">{{ studio.grouper }}</h3>
+                <h3 class="studio__team">Team</h3>
+                <h3 class="studio__role">Role</h3>
+            </div>
+            {% regroup studio.list by team as team_list %}
+            <div class="team-list">{% for team in team_list %}
+                <div class="team-item"  onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
+                    <div class="team-item__caption" onclick="click_action(this)">
+                        <div class="team-item__name">{{ team.grouper }}</div>
+                        <div class="team-item__openings-count">
+                            {% if team.list|length == 1 %}
+                            1 job opening
+                            {% else %}
+                            {{ team.list|length }} job openings
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="role-list">
+                        {% for opening in team.list %}
+                        <div class="role-item">
+                            <div class="role-item__text">
+                                <h4 class="role-item__title">{{ opening.role }}</h4>
+                                <p class="role-item__desc">{{opening.description}}</p>
+                                <a href="#!" class="role-item__more">Learn more</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- Openings end -->
+
+    <!--- Graduates start -->
+    <section class="section-block">
+        <div class="wrapper">
+            <div class="section-frame black-frame-line">Recent graduates</div>
+            <div class="section-caption culture-perks__caption">
+                <h3 class="section-caption__title">A new graduate’s passion, eagerness to learn, and hunger to challenge the status quo drives our company forward.</h3>
+                <p class="section-caption__desc">We are committed to ensuring that graduates not only benefit from great compensation and benefits but, more importantly, work alongside successful industry veterans.</p>
+            </div>
+            <div class="graduates-caption">
+                <div class="graduates-caption__pic">
+                    <img src="{% static 'bioware/img/careers-graduates-pic.jpg' %}" alt="Graduates" class="graduates-caption__img">
+                </div>
+                <div class="graduates-caption__desc">
+                    <p>All our interns are treated like established members of the team and contribute as much as regular employees. Interns and graduates are the future of BioWare.</p>
+                    <a href="#!" class="section-more-btn about__more">
+                        Apply now
+                        <img src="{% static 'bioware/img/svg/link-arrow.svg' %}" alt="" class="section-more-btn__arrow">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Graduates end -->
+
+    <div class="wrapper">
+        <a href="/contacts.html" class="go-to-other-page">
+            Go to our contacts
+            <img src="{% static 'bioware/img/svg/link-arrow-lg.svg' %}" alt="" class="go-to-other-page__arrow">
+        </a>
+    </div>
+
+    </main>
+
+    <!-- Footer start-->
+    {% include 'bioware/includes/footer.html' %}
+    <!-- Footer end -->
+    <script src="{% static 'bioware/scripts/main.js' %}"></script>
+    <script src="{% static 'bioware/scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'bioware/slick/slick.min.js' %}"></script>
+    <script src="{% static 'bioware/scripts/careers.js' %}"></script>
+</body>
+</html>

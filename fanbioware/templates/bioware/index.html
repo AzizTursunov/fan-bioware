@@ -1,0 +1,259 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'bioware/slick/slick-theme.css' %}"/>
+    <link rel="stylesheet" href="{% static 'bioware/css/index.css' %}">
+</head>
+<body>
+    <!-- Header start -->
+    {% include 'bioware/includes/header.html' %}
+    <!-- Header end -->
+
+    <main>
+        <!-- Cover start -->
+        <section class="section-block cover">
+            <div class="cover__slider">
+                <div>
+                    <img src="{% static 'bioware/img/mass_effect_intro.jpg' %}" alt="mass_effect" class="cover__pic">
+                    <div class="cover__title-wrap">
+                        <h1 class="cover__title cover__title-text-white">Relive</h1>
+                        <p class="cover__desc">
+                            The Mass Effect Legendary Edition includes single-player base content and over 40 DLC
+                        </p>
+                        <h1 class="cover__title cover__title-text-orange">the legend</h1>
+                        <div class="cover__btn">Buy now<a href="#!" class="cover__link"></a></div>
+                    </div>
+                </div>
+                <div>
+                    <img src="{% static 'bioware/img/anthem_intro.jpg' %}" alt="anthem" class="cover__pic">
+                    <div class="cover__title-wrap">
+                        <h1 class="cover__title cover__title-text-white">Save</h1>
+                        <p class="cover__desc">
+                            Get to know the javelin exosuits, progression mechanics, and other gameplay features
+                        </p>
+                        <h1 class="cover__title cover__title-text-orange">Humanity</h1>
+                        <div class="cover__btn">Buy now<a href="#!" class="cover__link"></a></div>
+                    </div>
+                </div>
+                <div>
+                    <img src="{% static 'bioware/img/dragon_age_intro.jpg' %}" alt="dragon_age" class="cover__pic">
+                    <div class="cover__title-wrap">
+                        <h1 class="cover__title cover__title-text-white">Lead</h1>
+                        <p class="cover__desc">
+                            Enter Thedas, a vibrant world of rugged wilderness, treacherous labyrinths, and glittering cities
+                        </p>
+                        <h1 class="cover__title cover__title-text-orange">Inquisition</h1>
+                        <div class="cover__btn">Buy now<a href="#!" class="cover__link"></a></div>
+                    </div>
+                </div>
+                <div>
+                    <img src="{% static 'bioware/img/star_wars-intro.jpg' %}" alt="star-wars" class="cover__pic">
+                    <div class="cover__title-wrap">
+                            <h1 class="cover__title cover__title-text-white">fight</h1>
+                            <p class="cover__desc">
+                                Join the battle for supremacy in Star Wars: The Old Republic
+                            </p>
+                            <h1 class="cover__title cover__title-text-orange">Continues</h1>
+                        <div class="cover__btn">Buy now<a href="#!" class="cover__link"></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cover__progress-bar">
+                <div class="cover__progress-bar-container">
+                    <div class="cover__progress-bar-item">
+                        <span data-slick-index="0" class="cover__progress-bar-line"></span>
+                    </div>
+                    <div class="cover__progress-bar-item">
+                        <span data-slick-index="1" class="cover__progress-bar-line"></span>
+                    </div>
+                    <div class="cover__progress-bar-item">
+                        <span data-slick-index="2" class="cover__progress-bar-line"></span>
+                    </div>
+                    <div class="cover__progress-bar-item">
+                        <span data-slick-index="2" class="cover__progress-bar-line"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Cover end-->
+
+        <!-- About-us start -->
+        <section class="section-block about-us">
+            <div class="wrapper">
+                <div class="section-frame black-frame-line">About us</div>
+                <div class="section-caption about-us__caption">
+                    <h2 class="section-caption__title">Look deeper into BioWare and our history.</h2>
+                </div>
+                <ul class="about-us__cards">
+                    <li class="about-us__card about-us__card-background-orange">
+                        <div class=" about__card-title">Foundation</div>
+                        <div class=" about__card-desc">BioWare was founded in 1995. So we are 26 years in the
+                            gaming industry.
+                        </div>
+                    </li>
+                    <li class="about-us__card about-us__card-background-blue">
+                        <div class=" about__card-title">What we do</div>
+                        <div class=" about__card-desc">We create high-quality console, PC games and specialize
+                            in role-playing games.
+                        </div>
+                    </li>
+                    <li class="about-us__card about-us__card-background-blue-grey">
+                        <div class=" about__card-title">Our projects</div>
+                        <div class=" about__card-desc">We developed 20 games focused on rich stories,
+                            unforgettable characters, and vast worlds to discover.
+                        </div>
+                    </li>
+                    <li class="about-us__card about-us__card-background-green">
+                        <div class=" about__card-title">Recognition</div>
+                        <div class=" about__card-desc">We have won 51 awards related to the gaming industry and
+                            other areas.
+                        </div>
+                    </li>
+                </ul>
+                <div class="about-us__more">
+                    <a href="./about.html" class="section-more-btn">
+                        Learn more
+                        <img src="{% static 'bioware/img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Abouts-us end -->
+
+        <!-- Slogan start -->
+        <div class="wrapper slogan">
+            <span class="slogan__text">Creating <span class="slogan__text-color-orange">worlds of adventure,</span></span>
+            <img src="{% static 'bioware/img/index-slogan-image1.jpg' %}" class="slogan__first-line-img" alt="slogan-img1">
+            <img src="{% static 'bioware/img/svg/index-slogan-image2.svg' %}" class="slogan__second-line-img" alt="slogan-img2">
+            <span class="slogan__text slogan__text-position-middle">conflict, and companionship that inspire you to become</span>
+            <span class="slogan__text slogan__text-color-orange">the hero of your story.</span>
+            <img src="{% static 'bioware/img/index-slogan-image3.jpg' %}" class="slogan__third-line-img" alt="slogan-img3">
+        </div>
+        <!-- Slogan end -->
+
+        <!-- Our-games start -->
+        <section class="section-block white-section our-games">
+            <div class="wrapper">
+                <div class="section-frame blue-frame white-frame-line">Our games</div>
+                <div class="section-caption">
+                    <h3 class="section-caption__title black-text">Please explore our most popular games. We invite you to join us on the journey.</h3>
+                </div>
+                <ul class="our-games-list">
+                    {% for game in game_list %}
+                    {% if game.is_released %}
+                    <li class="our-games-item">
+                        <a href="#!"></a>
+                        <div class="our-games-item__picture">
+                            <img src="{{game.image.url}}" alt="mass-effect" class="our-games-item__img">
+                        </div>
+                        <div class="our-games-item__text">
+                            <div class="our-games-item__title">{{game.title}}</div>
+                            <div class="our-games-item__desc">{{game.intro}}</div>
+                        </div>
+                        <div class="our-games-item__arrow"></div>
+                    </li>
+                {% endif %}
+                {% endfor %}
+                </ul>
+                <div class="our-games-more">
+                    <a href="./games.html" class="section-more-btn black-text">
+                        Go to our games
+                        <img src="{% static 'bioware/img/svg/link-arrow-black.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Our-games end-->
+
+        <!-- News start -->
+        <section class="section-block news">
+            <div class="wrapper">
+                <div class="section-frame black-frame-line">News</div>
+                <div class="section-caption">
+                    <h3 class="section-caption__title">Check out the latest news from time to time to stay updated.</h3>
+                </div>
+                <ul class="news-cards">
+                    {% for news in news_list %}
+                    <!--{% if news.is_publicated %}-->
+                    <li class="news-card">
+                        <a href="#!" class="news-card__link"></a>
+                        <div class="news-card__picture">
+                            <img src="{{news.image.url}}" alt="news_image1" class="news-card__img">
+                        </div>
+                        <div class="news-card__title">{{news.title}}</div>
+                        <div class="news-card__text">{{news.intro}}</div>
+                        <div class="news-card__caption">
+                            <div class="news-card__data">{{news.pub_date}}</div>
+                            <div class="news-card__arrow"></div>
+                        </div>
+                    </li>
+                    <!--{% endif %}-->
+                    {% endfor %}
+                </ul>
+                <div class="news__more">
+                    <a href="#!" class="section-more-btn">
+                        Load more
+                        <img src="{% static 'bioware/img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- News end -->
+
+        <!-- Hiring start -->
+        <section class="section-block white-section hiring">
+            <div class="wrapper">
+                <div class="section-frame blue-frame white-frame-line">We are hiring</div>
+                <div class="section-caption hiring__caption">
+                    <div class="section-caption__title black-text">BioWare's story continues to evolve. Let’s create something amazing together.</div>
+                    <div class="section-caption__desc black-text">
+                        We believe a work and life balance is essential to the success of our employees.
+                        It is our goal to create a work environment that is hardworking and fun. We invite you to join us on the
+                        journey.
+                    </div>
+                    <div class="hiring__more">
+                        <a href="/careers.html" class="section-more-btn black-text">
+                            Explore job openings
+                            <img src="{% static 'bioware/img/svg/link-arrow-black.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
+                        </a>
+                    </div>
+                    <div class="hiring__cards">
+                        <div class="hiring__card">
+                            <h1 class="hiring__card-number">{{roles_count}}</h1>
+                            <p class="hiring__card-desc">Open positions</p>
+                        </div>
+                        <div class="hiring__card">
+                            <h1 class="hiring__card-number">{{teams_count}}</h1>
+                            <p class="hiring__card-desc">Teams looking for new members</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Hiring end -->
+
+        <div class="wrapper">
+            <a href="./games.html" class="go-to-other-page">
+                Go to our games
+                <img src="{% static 'bioware/img/svg/link-arrow-lg.svg' %}" alt="btn-arrow" class="go-to-other-page__arrow">
+            </a>
+        </div>
+    </main>
+    <!-- Footer star -->
+    {% include 'bioware/includes/footer.html' %}
+    <!-- Footer end -->
+    <script src="{% static 'bioware/scripts/main.js' %}"></script>
+    <script src="{% static 'bioware/scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'bioware/slick/slick.min.js' %}"></script>
+    <script src="{% static 'bioware/scripts/index.js' %}"></script>
+</body>
+</html>
+

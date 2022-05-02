@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bioware/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'bioware/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'bioware/css/games.css' %}">
+    <title>{{title}}</title>
+</head>
+<body>
+    <!-- Header start -->
+    {% include 'bioware/includes/header.html' %}
+    <!-- Header end -->
+
+    <main>
+        <!-- Cover starts -->
+        <section class="section-block cover">
+            <div class="wrapper">
+                <div class="cover__wrap">
+                    <h1 class="cover__title cover__title_first-line">Welcome</h1>
+                    <p class="cover__desc">BioWare creates games focused on rich stories, unforgettable characters, vast worlds</p>
+                    <h1 class="cover__title cover__title_second-line">TO</h1>
+                    <div class="cover__pic">
+                        <img src="{% static 'bioware/img/games-cover-pic.jpg' %}" alt="" class="cover__img">
+                    </div>
+                    <h1 class="cover__title cover__title_third-line">ADVENTURE</h1>
+                </div>
+            </div>
+        </section>
+        <!-- Cover ends -->
+
+        <!-- Projects start -->
+        <section class="section-block projects">
+            <div class="wrapper">
+                <h6 class="section-frame black-frame-line">Featured projects</h6>
+                <div class="projects-cards">
+                    {% for game in game_list %}
+                    <div class="projects-card">
+                        <div class="projects-card__pic">
+                            <img src="{{game.image.url}}" alt="MASS EFFECT" class="projects-card__img">
+                        </div>
+                        {% if forloop.last %}
+                        <div class="projects-card__text last-card" onclick="click_action(this)" onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
+                        {% else %}
+                        <div class="projects-card__text" onclick="click_action(this)" onmouseover="changeCardTitle(this)" onmouseout="rechangeCardTitle(this)">
+                        {% endif %}
+                            <div class="projects-card__caption">
+                                <button class="projects-card__title">{{game.title}}</button>
+                                <button class="projects-card__button"></button>
+                            </div>
+                            <div class="projects-card__desc">
+                                <p>{{game.description|linebreaks}}</p>
+                            </div>
+                            <a href="#!" class="section-more-btn projects-more">
+                                Learn more
+                                <img src="{% static 'bioware/img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- Projects end -->
+
+        <!-- Archive start-->
+        <section class="section-block archive">
+            <div class="wrapper">
+                <div class="section-frame black-frame-line">Archive</div>
+                <div class="section-caption archive-caption">
+                    <h3 class="section-caption__title">Please explore our previous games. They are also great and our beloved projects.</h3>
+                    <div class="archive-projects" id="projects">
+                        <a href="#!" class="archive-projects__project" onmouseover="changeSlashColor()" onmouseout="rechangeSlashColor()">JADE EMPIRE</a>
+                        <span class="archive-projects__slash">/</span>
+                        <a href="#!" class="archive-projects__project" onmouseover="changeSlashColor()" onmouseout="rechangeSlashColor()">STAR WARS: KNIGHTS OF THE OLD REPUBLIC</a>
+                        <span class="archive-projects__slash"> / </span>
+                        <a href="#!" class="archive-projects__project" onmouseover="changeSlashColor()" onmouseout="rechangeSlashColor()">NEVERWINTER NIGHTS</a>
+                        <span class="archive-projects__slash"> / </span>
+                        <a href="#!" class="archive-projects__project" onmouseover="changeSlashColor()" onmouseout="rechangeSlashColor()">BALDUR'S CATE II</a>
+                        <span class="archive-projects__slash"> / </span>
+                        <a href="#!" class="archive-projects__project" onmouseover="changeSlashColor()" onmouseout="rechangeSlashColor()">BALDUR'S CATE</a>
+                        <span class="archive-projects__slash"> /</span>
+                        <a href="#!" class="archive-projects__project" onmouseover="changeSlashColor()" onmouseout="rechangeSlashColor()">MDK2</a>
+                        <span class="archive-projects__slash"> / </span>
+                        <a href="#!" class="archive-projects__project" onmouseover="changeSlashColor()" onmouseout="rechangeSlashColor()">SHATTERED STEEL</a>
+                        <span class="archive-projects__slash"> / </span>
+                        <a href="#!" class="archive-projects__project" onmouseover="changeSlashColor()" onmouseout="rechangeSlashColor()">MASS EFFECT GALAXY</a>
+                        <span class="archive-projects__slash"> / </span>
+                        <a href="#!" class="archive-projects__project" onmouseover="changeSlashColor()" onmouseout="rechangeSlashColor()">SONIC CHRONICLES</a>
+                        <span class="archive-projects__slash"> / </span>
+                        <a href="#!" class="archive-projects__project" onmouseover="changeSlashColor()" onmouseout="rechangeSlashColor()">THE DARK BROTHERHOOD</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Archive end-->
+        <div class="wrapper">
+            <a href="{% url 'bioware:game_detail' 'mass-effect-legendary-edition' %}" class="go-to-other-page">
+                Go to Mass Effect
+                <img src="{% static 'bioware/img/svg/link-arrow-lg.svg' %}" alt="btn-arrow" class="go-to-other-page__arrow">
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer start-->
+    {% include 'bioware/includes/footer.html' %}
+    <!-- Footer end -->
+    <script src="{% static 'bioware/scripts/main.js' %}"></script>
+    <script src="{% static 'bioware/scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'bioware/scripts/games_cards.js' %}"></script>
+</body>
+</html>
