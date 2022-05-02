@@ -285,7 +285,7 @@ class GameSliderImage(models.Model):
     image = models.ImageField(
         verbose_name='Slide',
         help_text='Attach the slide',
-        upload_to='bioware/slider/games/'
+        upload_to='bioware/sliders/games/'
     )
 
 
@@ -299,5 +299,5 @@ class StudioSliderImage(models.Model):
     image = models.ImageField(
         verbose_name='Slide',
         help_text='Attach the slide',
-        upload_to='bioware/slider/studios/'
+        upload_to='bioware/sliders/studios/'
     )
