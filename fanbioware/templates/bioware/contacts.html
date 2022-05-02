@@ -1,119 +1,100 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+{% block title %}{{title}}{% endblock %}
+{% block css %}
     <link rel="stylesheet" type="text/css"  href="{% static 'slick/slick.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/contacts.css' %}">
-    <title>Contacts</title>
-</head>
-<body>
-    <!-- Header start-->
-    {% include 'bioware/includes/header.html' %}
-    <!-- Header end -->
-    <main>
-        <!-- Cover start-->
-        <section class="section-block cover">
-            <div class="wrapper">
-                <div class="cover__wrap">
-                    <h1 class="cover__title cover__title_first-line">feel free</h1>
-                    <p class="cover__desc">We’re based in Canada and USA</p>
-                    <h1 class="cover__title cover__title_second-line">to contact</h1>
-                </div>
-                <div class="cover__pic">
-                    <img src="{% static 'img/contacts-intro.jpg' %}" alt="feel free to contact" class="cover__img">
-                </div>
-            </div>
-        </section>
-        <!-- Cover end-->
-
-        <!-- Studios start-->
-        <section class="section-block studios">
-            <div class="wrapper">
-                <div class="section-frame black-frame-line">Our values</div>
-                {% for studio in studio_list %}
-                <div class="studios__wrapper">
-                    <div class="studios-card">
-                        <h3 class="studios-card__title">{{studio.address2|truncatewords:1|slice:-1}}</h3>
-                        <p class="studios-card__desc">{{studio.description}}</p>
-                        <h6 class="studios-card__contacts">{{studio.address1}}<br>{{studio.address2}}<br>{{studio.zip_code}}</h6>
-                        <h6 class="studios-card__contacts">{{studio.phone}}</h6>
-                        <a href="#!" class="studios-card__email">{{studio.email}}</a>
-                    </div>
-                    <div class="slider">
-                        {% for slide in studio.Slide.all %}
-                        <div><img src="{{slide.image.url}}"></div>
-                        {% endfor %}
-                    </div>
-                    <a href="https://www.google.ru/maps/place/BioWare/@53.5734493,-113.541497,11.5z/data=!4m5!3m4!1s0x53a01f343246bf23:0xb7be04cea3ead042!8m2!3d53.5474518!4d-113.4927878" class="section-more-btn studios-more" target="_blank">
-                        See on the map
-                        <img src="{% static 'img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
-                    </a>
-                    <div class="slider-number">
-                        <pre  class="active-slide" id="active-slide-slider{{forloop.counter0}}">01</pre>
-                        <pre>/ 04</pre>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </section>
-        <!-- Studios end -->
-
-        <!-- Support start -->
-        <section class="section-block support">
-            <div class="wrapper">
-                <h6 class="section-frame black-frame-line">Technical support</h6>
-                <div class="section-caption support__caption">
-                    <div class="section-caption__title support-title">
-                        BioWare’s corporate office is unable to provide service or support for any EA title. For account or technical
-                        assistance, please <p class="support-title__link-wrap">visit <a href="#!" class="support-title__link">help.ea.com</a></p>
-                    </div>
-                    <div class="game-cards">
-                        <div class="game-card">
-                            <img src="{% static 'img/game-card-pic1.jpg' %}" alt="Anthem" class="game-card__pic">
-                            <h5 class="game-card__title">Anthem</h5>
-                            <img src="{% static 'img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
-                        </div>
-                        <div class="game-card">
-                            <img src="{% static 'img/game-card-pic2.jpg' %}" alt="Dragon Age" class="game-card__pic">
-                            <h5 class="game-card__title">Dragon Age</h5>
-                            <img src="{% static 'img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
-                        </div>
-                        <div class="game-card">
-                            <img src="{% static 'img/game-card-pic3.jpg' %}" alt="Mass Effect" class="game-card__pic">
-                            <h5 class="game-card__title">Mass Effect</h5>
-                            <img src="{% static 'img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
-                        </div>
-                        <div class="game-card">
-                            <img src="{% static 'img/game-card-pic4.jpg' %}" alt="Star Wars: The Old Republic" class="game-card__pic">
-                            <h5 class="game-card__title">Star Wars: The Old Republic</h5>
-                            <img src="{% static 'img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Support end -->
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contacts.css' %}"/>
+{% endblock %}
+{% block content %}
+<!-- Cover start-->
+    <section class="section-block cover">
         <div class="wrapper">
-            <a href="{% url 'bioware:game_list' %}" class="go-to-other-page">
-                Go to our games
-                <img src="{% static 'img/svg/link-arrow-lg.svg' %}" alt="btn-arrow" class="go-to-other-page__arrow">
-            </a>
+            <div class="cover__wrap">
+                <h1 class="cover__title cover__title_first-line">feel free</h1>
+                <p class="cover__desc">We’re based in Canada and USA</p>
+                <h1 class="cover__title cover__title_second-line">to contact</h1>
+            </div>
+            <div class="cover__pic">
+                <img src="{% static 'img/contacts-intro.jpg' %}" alt="feel free to contact" class="cover__img">
+            </div>
         </div>
-    </main>
-
-    <!-- Footer start-->
-    {% include 'bioware/includes/footer.html' %}
-    <!-- Footer end -->
-    <script src="{% static 'scripts/main.js' %}"></script>
-    <script src="{% static 'scripts/jquery.min.js' %}"></script>
+    </section>
+    <!-- Cover end-->
+    <!-- Studios start-->
+    <section class="section-block studios">
+        <div class="wrapper">
+            <div class="section-frame black-frame-line">Our values</div>
+            {% for studio in studio_list %}
+            <div class="studios__wrapper">
+                <div class="studios-card">
+                    <h3 class="studios-card__title">{{studio.address2|truncatewords:1|slice:-1}}</h3>
+                    <p class="studios-card__desc">{{studio.description}}</p>
+                    <h6 class="studios-card__contacts">{{studio.address1}}<br>{{studio.address2}}<br>{{studio.zip_code}}</h6>
+                    <h6 class="studios-card__contacts">{{studio.phone}}</h6>
+                    <a href="#!" class="studios-card__email">{{studio.email}}</a>
+                </div>
+                <div class="slider">
+                    {% for slide in studio.Slide.all %}
+                    <div><img src="{{slide.image.url}}"></div>
+                    {% endfor %}
+                </div>
+                <a href="https://www.google.ru/maps/place/BioWare/@53.5734493,-113.541497,11.5z/data=!4m5!3m4!1s0x53a01f343246bf23:0xb7be04cea3ead042!8m2!3d53.5474518!4d-113.4927878" class="section-more-btn studios-more" target="_blank">
+                    See on the map
+                    <img src="{% static 'img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
+                </a>
+                <div class="slider-number">
+                    <pre  class="active-slide" id="active-slide-slider{{forloop.counter0}}">01</pre>
+                    <pre>/ 04</pre>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- Studios end -->
+    <!-- Support start -->
+    <section class="section-block support">
+        <div class="wrapper">
+            <h6 class="section-frame black-frame-line">Technical support</h6>
+            <div class="section-caption support__caption">
+                <div class="section-caption__title support-title">
+                    BioWare’s corporate office is unable to provide service or support for any EA title. For account or technical
+                    assistance, please <p class="support-title__link-wrap">visit <a href="#!" class="support-title__link">help.ea.com</a></p>
+                </div>
+                <div class="game-cards">
+                    <div class="game-card">
+                        <img src="{% static 'img/game-card-pic1.jpg' %}" alt="Anthem" class="game-card__pic">
+                        <h5 class="game-card__title">Anthem</h5>
+                        <img src="{% static 'img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
+                    </div>
+                    <div class="game-card">
+                        <img src="{% static 'img/game-card-pic2.jpg' %}" alt="Dragon Age" class="game-card__pic">
+                        <h5 class="game-card__title">Dragon Age</h5>
+                        <img src="{% static 'img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
+                    </div>
+                    <div class="game-card">
+                        <img src="{% static 'img/game-card-pic3.jpg' %}" alt="Mass Effect" class="game-card__pic">
+                        <h5 class="game-card__title">Mass Effect</h5>
+                        <img src="{% static 'img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
+                    </div>
+                    <div class="game-card">
+                        <img src="{% static 'img/game-card-pic4.jpg' %}" alt="Star Wars: The Old Republic" class="game-card__pic">
+                        <h5 class="game-card__title">Star Wars: The Old Republic</h5>
+                        <img src="{% static 'img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Support end -->
+    <div class="wrapper">
+        <a href="{% url 'bioware:game_list' %}" class="go-to-other-page">
+            Go to our games
+            <img src="{% static 'img/svg/link-arrow-lg.svg' %}" alt="btn-arrow" class="go-to-other-page__arrow">
+        </a>
+    </div>
+{% endblock %}
+{% block js %}
     <script src="{% static 'slick/slick.min.js' %}"></script>
     <script src="{% static 'scripts/contacts.js' %}"></script>
-</body>
-</html>
+{% endblock %}

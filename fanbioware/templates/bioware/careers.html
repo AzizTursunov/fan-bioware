@@ -1,23 +1,12 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick.css' %}"/>
+{% block title %}{{title}}{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css"  href="{% static 'slick/slick.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/careers.css' %}">
-    <title>Careers</title>
-</head>
-<body>
-    <!-- Header start-->
-    {% include 'bioware/includes/header.html' %}
-    <!-- Header end -->
-
-    <main>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/careers.css' %}"/>
+{% endblock %}
+{% block content %}
     <!-- Cover start -->
     <section class="section-block">
         <div class="wrapper">
@@ -141,15 +130,8 @@
             <img src="{% static 'img/svg/link-arrow-lg.svg' %}" alt="" class="go-to-other-page__arrow">
         </a>
     </div>
-
-    </main>
-
-    <!-- Footer start-->
-    {% include 'bioware/includes/footer.html' %}
-    <!-- Footer end -->
-    <script src="{% static 'scripts/main.js' %}"></script>
-    <script src="{% static 'scripts/jquery.min.js' %}"></script>
+{% endblock %}
+{% block js %}
     <script src="{% static 'slick/slick.min.js' %}"></script>
     <script src="{% static 'scripts/careers.js' %}"></script>
-</body>
-</html>
+{% endblock %}
