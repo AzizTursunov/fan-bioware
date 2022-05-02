@@ -1,3 +1,4 @@
+from datetime import date
 from multiselectfield import MultiSelectField
 from django.db import models
 
@@ -134,7 +135,7 @@ class News(models.Model):
         verbose_name='Title',
         help_text='Enter a title of the news'
     )
-    pub_date = models.DateField(auto_now=True)
+    pub_date = models.DateField(default=date.today())
     intro = models.CharField(
         max_length=90,
         verbose_name='Intro',
