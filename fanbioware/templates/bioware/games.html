@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'bioware/css/reset.css' %}">
-    <link rel="stylesheet" href="{% static 'bioware/css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'bioware/css/games.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/games.css' %}">
     <title>{{title}}</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
                     <p class="cover__desc">BioWare creates games focused on rich stories, unforgettable characters, vast worlds</p>
                     <h1 class="cover__title cover__title_second-line">TO</h1>
                     <div class="cover__pic">
-                        <img src="{% static 'bioware/img/games-cover-pic.jpg' %}" alt="" class="cover__img">
+                        <img src="{% static 'img/games-cover-pic.jpg' %}" alt="" class="cover__img">
                     </div>
                     <h1 class="cover__title cover__title_third-line">ADVENTURE</h1>
                 </div>
@@ -56,7 +56,7 @@
                             </div>
                             <a href="#!" class="section-more-btn projects-more">
                                 Learn more
-                                <img src="{% static 'bioware/img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
+                                <img src="{% static 'img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                             </a>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
         <div class="wrapper">
             <a href="{% url 'bioware:game_detail' 'mass-effect-legendary-edition' %}" class="go-to-other-page">
                 Go to Mass Effect
-                <img src="{% static 'bioware/img/svg/link-arrow-lg.svg' %}" alt="btn-arrow" class="go-to-other-page__arrow">
+                <img src="{% static 'img/svg/link-arrow-lg.svg' %}" alt="btn-arrow" class="go-to-other-page__arrow">
             </a>
         </div>
     </main>
@@ -108,8 +108,8 @@
     <!-- Footer start-->
     {% include 'bioware/includes/footer.html' %}
     <!-- Footer end -->
-    <script src="{% static 'bioware/scripts/main.js' %}"></script>
-    <script src="{% static 'bioware/scripts/jquery.min.js' %}"></script>
-    <script src="{% static 'bioware/scripts/games_cards.js' %}"></script>
+    <script src="{% static 'scripts/main.js' %}"></script>
+    <script src="{% static 'scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'scripts/games_cards.js' %}"></script>
 </body>
 </html>

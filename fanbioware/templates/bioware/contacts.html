@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/reset.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/base.css' %}">
-    <link rel="stylesheet" type="text/css"  href="{% static 'bioware/slick/slick.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'bioware/slick/slick-theme.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'bioware/css/contacts.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contacts.css' %}">
     <title>Contacts</title>
 </head>
 <body>
@@ -26,7 +26,7 @@
                     <h1 class="cover__title cover__title_second-line">to contact</h1>
                 </div>
                 <div class="cover__pic">
-                    <img src="{% static 'bioware/img/contacts-intro.jpg' %}" alt="feel free to contact" class="cover__img">
+                    <img src="{% static 'img/contacts-intro.jpg' %}" alt="feel free to contact" class="cover__img">
                 </div>
             </div>
         </section>
@@ -52,7 +52,7 @@
                     </div>
                     <a href="https://www.google.ru/maps/place/BioWare/@53.5734493,-113.541497,11.5z/data=!4m5!3m4!1s0x53a01f343246bf23:0xb7be04cea3ead042!8m2!3d53.5474518!4d-113.4927878" class="section-more-btn studios-more" target="_blank">
                         See on the map
-                        <img src="{% static 'bioware/img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
+                        <img src="{% static 'img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                     </a>
                     <div class="slider-number">
                         <pre  class="active-slide" id="active-slide-slider{{forloop.counter0}}">01</pre>
@@ -75,24 +75,24 @@
                     </div>
                     <div class="game-cards">
                         <div class="game-card">
-                            <img src="{% static 'bioware/img/game-card-pic1.jpg' %}" alt="Anthem" class="game-card__pic">
+                            <img src="{% static 'img/game-card-pic1.jpg' %}" alt="Anthem" class="game-card__pic">
                             <h5 class="game-card__title">Anthem</h5>
-                            <img src="{% static 'bioware/img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
+                            <img src="{% static 'img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
                         </div>
                         <div class="game-card">
-                            <img src="{% static 'bioware/img/game-card-pic2.jpg' %}" alt="Dragon Age" class="game-card__pic">
+                            <img src="{% static 'img/game-card-pic2.jpg' %}" alt="Dragon Age" class="game-card__pic">
                             <h5 class="game-card__title">Dragon Age</h5>
-                            <img src="{% static 'bioware/img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
+                            <img src="{% static 'img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
                         </div>
                         <div class="game-card">
-                            <img src="{% static 'bioware/img/game-card-pic3.jpg' %}" alt="Mass Effect" class="game-card__pic">
+                            <img src="{% static 'img/game-card-pic3.jpg' %}" alt="Mass Effect" class="game-card__pic">
                             <h5 class="game-card__title">Mass Effect</h5>
-                            <img src="{% static 'bioware/img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
+                            <img src="{% static 'img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
                         </div>
                         <div class="game-card">
-                            <img src="{% static 'bioware/img/game-card-pic4.jpg' %}" alt="Star Wars: The Old Republic" class="game-card__pic">
+                            <img src="{% static 'img/game-card-pic4.jpg' %}" alt="Star Wars: The Old Republic" class="game-card__pic">
                             <h5 class="game-card__title">Star Wars: The Old Republic</h5>
-                            <img src="{% static 'bioware/img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
+                            <img src="{% static 'img/svg/game-card-arrow.svg' %}" alt="arrow" class="game-card__arrow">
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
         <div class="wrapper">
             <a href="{% url 'bioware:game_list' %}" class="go-to-other-page">
                 Go to our games
-                <img src="{% static 'bioware/img/svg/link-arrow-lg.svg' %}" alt="btn-arrow" class="go-to-other-page__arrow">
+                <img src="{% static 'img/svg/link-arrow-lg.svg' %}" alt="btn-arrow" class="go-to-other-page__arrow">
             </a>
         </div>
     </main>
@@ -111,9 +111,9 @@
     <!-- Footer start-->
     {% include 'bioware/includes/footer.html' %}
     <!-- Footer end -->
-    <script src="{% static 'bioware/scripts/main.js' %}"></script>
-    <script src="{% static 'bioware/scripts/jquery.min.js' %}"></script>
-    <script src="{% static 'bioware/slick/slick.min.js' %}"></script>
-    <script src="{% static 'bioware/scripts/contacts.js' %}"></script>
+    <script src="{% static 'scripts/main.js' %}"></script>
+    <script src="{% static 'scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'slick/slick.min.js' %}"></script>
+    <script src="{% static 'scripts/contacts.js' %}"></script>
 </body>
 </html>
