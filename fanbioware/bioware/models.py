@@ -1,6 +1,7 @@
 from datetime import date
 from multiselectfield import MultiSelectField
 from django.db import models
+from django.urls import reverse
 
 
 class Game(models.Model):
@@ -97,6 +98,9 @@ class Game(models.Model):
     def __str__(self):
         """Return the title of the Game."""
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('bioware:game_detail', kwargs={'game_slug': self.slug})
 
     @property
     def platforms_available(self):
