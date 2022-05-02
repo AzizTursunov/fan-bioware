@@ -136,7 +136,7 @@
                 {% for game in game_list %}
                 {% if game.is_released %}
                 <li class="our-games-item">
-                    <a href="#!"></a>
+                    <a href="{{game.get_absolute_url}}"></a>
                     <div class="our-games-item__picture">
                         <img src="{{game.image.url}}" alt="mass-effect" class="our-games-item__img">
                     </div>
