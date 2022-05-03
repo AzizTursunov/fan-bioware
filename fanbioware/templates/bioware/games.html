@@ -44,7 +44,7 @@
                         <div class="projects-card__desc">
                             <p>{{game.description|linebreaks}}</p>
                         </div>
-                        <a href="#!" class="section-more-btn projects-more">
+                        <a href="{{game.get_absolute_url}}" class="section-more-btn projects-more">
                             Learn more
                             <img src="{% static 'img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                         </a>
