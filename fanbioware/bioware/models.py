@@ -93,7 +93,7 @@ class Game(models.Model):
     class Meta:
         verbose_name = 'Game'
         verbose_name_plural = 'Games'
-        ordering = ['id']
+        ordering = ['-rel_date']
 
     def __str__(self):
         """Return the title of the Game."""
