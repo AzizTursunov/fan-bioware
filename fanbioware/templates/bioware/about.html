@@ -96,7 +96,7 @@
                     <div class="values-item__border"></div>
                 </li>
                 <li class="values-item">
-                    <a href="/" class="section-more-btn values__more">
+                    <a href="./values.html" class="section-more-btn values__more">
                         Learn more
                         <img src="{%static 'img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                     </a>
@@ -360,7 +360,7 @@
                         <p class="award__year">2008</p>
                     </li>
                     <li>
-                        <a href="#!" class="section-more-btn">
+                        <a href="/.awards.html" class="section-more-btn">
                             See full list of awards
                             <img src="{%static 'img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                         </a>
@@ -391,7 +391,7 @@
                         {{studio.zip_code}}
                     </p>
                     <p class="studios-card__phone">{{studio.phone}}</p>
-                    <a href="bioware/contacts.html#edmond" class="studios-card__link"></a>
+                    <a href="{% url 'bioware:contacts' %}#{{studio.address1}}" class="studios-card__link"></a>
                 </div>
                 {% endfor %}
             </div>

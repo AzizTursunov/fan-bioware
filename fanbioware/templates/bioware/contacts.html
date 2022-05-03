@@ -27,7 +27,7 @@
             <div class="section-frame black-frame-line">Our values</div>
             {% for studio in studio_list %}
             <div class="studios__wrapper">
-                <div class="studios-card">
+                <div class="studios-card" id="{{studio.address1}}">
                     <h3 class="studios-card__title">{{studio.address2|truncatewords:1|slice:-1}}</h3>
                     <p class="studios-card__desc">{{studio.description}}</p>
                     <h6 class="studios-card__contacts">{{studio.address1}}<br>{{studio.address2}}<br>{{studio.zip_code}}</h6>
@@ -59,7 +59,7 @@
             <div class="section-caption support__caption">
                 <div class="section-caption__title support-title">
                     BioWare’s corporate office is unable to provide service or support for any EA title. For account or technical
-                    assistance, please <p class="support-title__link-wrap">visit <a href="#!" class="support-title__link">help.ea.com</a></p>
+                    assistance, please <p class="support-title__link-wrap">visit <a href="https://help.ea.com/" class="support-title__link" target="_blank">help.ea.com</a></p>
                 </div>
                 <div class="game-cards">
                     <div class="game-card">

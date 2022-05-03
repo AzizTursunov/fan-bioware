@@ -18,7 +18,7 @@
                         The Mass Effect Legendary Edition includes single-player base content and over 40 DLC
                     </p>
                     <h1 class="cover__title cover__title-text-orange">the legend</h1>
-                    <div class="cover__btn">Buy now<a href="#!" class="cover__link"></a></div>
+                    <div class="cover__btn">Buy now<a href="{% url 'bioware:game_detail' 'mass-effect-legendary-edition' %}#buynow" class="cover__link"></a></div>
                 </div>
             </div>
             <div>
@@ -29,18 +29,18 @@
                         Get to know the javelin exosuits, progression mechanics, and other gameplay features
                     </p>
                     <h1 class="cover__title cover__title-text-orange">Humanity</h1>
-                    <div class="cover__btn">Buy now<a href="#!" class="cover__link"></a></div>
+                    <div class="cover__btn">Buy now<a href="{% url 'bioware:game_detail' 'anthem' %}#buynow" class="cover__link"></a></div>
                 </div>
             </div>
             <div>
-                <img src="{% static 'img/dragon-age-intro-min.jpg' %}" alt="dragon_age" class="cover__pic">
+                <img src="{% static 'img/dragon-age-intro-min.jpg' %}" alt="dragon-age-inquisition" class="cover__pic">
                 <div class="cover__title-wrap">
                     <h1 class="cover__title cover__title-text-white">Lead</h1>
                     <p class="cover__desc">
                         Enter Thedas, a vibrant world of rugged wilderness, treacherous labyrinths, and glittering cities
                     </p>
                     <h1 class="cover__title cover__title-text-orange">Inquisition</h1>
-                    <div class="cover__btn">Buy now<a href="#!" class="cover__link"></a></div>
+                    <div class="cover__btn">Buy now<a href="{% url 'bioware:game_detail' 'dragon-age-inquisition' %}#buynow" class="cover__link"></a></div>
                 </div>
             </div>
             <div>
@@ -51,7 +51,7 @@
                             Join the battle for supremacy in Star Wars: The Old Republic
                         </p>
                         <h1 class="cover__title cover__title-text-orange">Continues</h1>
-                    <div class="cover__btn">Buy now<a href="#!" class="cover__link"></a></div>
+                    <div class="cover__btn">Buy now<a href="{% url 'bioware:game_detail' 'star-wars' %}#buynow" class="cover__link"></a></div>
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@
                 </li>
             </ul>
             <div class="about-us__more">
-                <a href="./about.html" class="section-more-btn">
+                <a href="{% url 'bioware:about' %}" class="section-more-btn">
                     Learn more
                     <img src="{% static 'img/svg/link-arrow.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                 </a>
@@ -150,7 +150,7 @@
             {% endfor %}
             </ul>
             <div class="our-games-more">
-                <a href="./games.html" class="section-more-btn black-text">
+                <a href="{% url 'bioware:game_list' %}" class="section-more-btn black-text">
                     Go to our games
                     <img src="{% static 'img/svg/link-arrow-black.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                 </a>
@@ -204,7 +204,7 @@
                     journey.
                 </div>
                 <div class="hiring__more">
-                    <a href="/careers.html" class="section-more-btn black-text">
+                    <a href="{% url 'bioware:careers' %}" class="section-more-btn black-text">
                         Explore job openings
                         <img src="{% static 'img/svg/link-arrow-black.svg' %}" alt="btn-arrow" class="section-more-btn__arrow">
                     </a>
@@ -224,7 +224,7 @@
     </section>
     <!-- Hiring end -->
     <div class="wrapper">
-        <a href="./games.html" class="go-to-other-page">
+        <a href="{% url 'bioware:game_list' %}" class="go-to-other-page">
             Go to our games
             <img src="{% static 'img/svg/link-arrow-lg.svg' %}" alt="btn-arrow" class="go-to-other-page__arrow">
         </a>

@@ -84,7 +84,7 @@
     </section>
     <!-- News end -->
     <!-- Join-us start -->
-    <section class="section-block">
+    <section class="section-block" id="buynow">
         <div class="wrapper">
             <div class="section-frame black-frame-line">Join us</div>
             <div class="section-caption join-us__caption">
@@ -126,8 +126,8 @@
     </section>
     <!-- Join-us end -->
     <div class="wrapper">
-        <a href="#!" class="go-to-other-page">
-            Go to Dragon Age
+        <a href="{{next_game.get_absolute_url}}" class="go-to-other-page">
+            Go to {{next_game.title}}
             <img src="{% static 'img/svg/link-arrow-lg.svg' %}" alt="" class="go-to-other-page__arrow">
         </a>
     </div>

@@ -114,7 +114,7 @@
                 </div>
                 <div class="graduates-caption__desc">
                     <p>All our interns are treated like established members of the team and contribute as much as regular employees. Interns and graduates are the future of BioWare.</p>
-                    <a href="#!" class="section-more-btn about__more">
+                    <a href="./graduates.html" class="section-more-btn about__more">
                         Apply now
                         <img src="{% static 'img/svg/link-arrow.svg' %}" alt="" class="section-more-btn__arrow">
                     </a>
@@ -125,7 +125,7 @@
     <!-- Graduates end -->
 
     <div class="wrapper">
-        <a href="/contacts.html" class="go-to-other-page">
+        <a href="{% url 'bioware:contacts' %}" class="go-to-other-page">
             Go to our contacts
             <img src="{% static 'img/svg/link-arrow-lg.svg' %}" alt="" class="go-to-other-page__arrow">
         </a>
