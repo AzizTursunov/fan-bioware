@@ -53,12 +53,16 @@ def game_detail(request, game_slug):
         raise Http404
     game_title = ' '.join(game_slug.split('-'))
     game = get_object_or_404(Game, slug=game_slug)
+    games_count = Game.objects.count()
+    next_game_id = (game.id + 1) % games_count
+    next_game = Game.objects.get(id=next_game_id)
     news = News.objects.filter(game=game)[:4]
     main_news = news.first()
     news_list = news[1:]
     context = {
         'title': game_title,
         'game': game,
+        'next_game': next_game,
         'main_news': main_news,
         'news_list': news_list,
     }
