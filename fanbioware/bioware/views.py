@@ -2,6 +2,7 @@ import os.path
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Count, Sum
+from django.views.generic import ListView
 from fanbioware.settings import TEMPLATES_DIR
 from .models import Game, News, Studio, Opening
 
@@ -36,13 +37,17 @@ def about(request):
 
 
 def game_list(request):
-    template = 'bioware/games.html'
+    template = 'bioware/game_list.html'
     game_list = Game.objects.all()
     context = {
         'game_list': game_list,
         'title': 'Our games'
     }
     return render(request, template, context)
+
+
+class GameList(ListView):
+    model = Game
 
 
 def game_detail(request, game_slug):
