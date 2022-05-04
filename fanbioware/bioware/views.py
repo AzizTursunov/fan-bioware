@@ -48,7 +48,7 @@ def game_list(request):
 
 class GameList(ListView):
     model = Game
-    template = 'bioware/game_list.html'
+    template_name = 'bioware/game_list.html'
 
     def get_queryset(self):
         return Game.objects.filter(is_released=True)
@@ -89,6 +89,12 @@ def careers(request):
         'title': 'Careers'
     }
     return render(request, template, context)
+
+
+class OpeningList(ListView):
+    model = Opening
+    template_name = 'bioware/careers.html'
+    extra_context = {'title': 'Careers'}
 
 
 def contacts(request):
