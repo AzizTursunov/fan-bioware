@@ -48,6 +48,15 @@ def game_list(request):
 
 class GameList(ListView):
     model = Game
+    template = 'bioware/game_list.html'
+
+    def get_queryset(self):
+        return Game.objects.filter(is_released=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Our games'
+        return context
 
 
 def game_detail(request, game_slug):
