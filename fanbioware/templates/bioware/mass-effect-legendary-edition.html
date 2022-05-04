@@ -1,5 +1,8 @@
 {% extends 'game_detail.html' %}
 {% load static %}
+{% block game-css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mass_effect.css' %}"/>
+{% endblock %}
 {% block game-cover %}
     <!-- Cover start -->
     <section class="section-block cover">
@@ -122,4 +125,7 @@
         </div>
     </section>
     <!-- Game-universe end -->
+{% endblock %}
+{% block js-game %}
+    <script src="{% static 'mass_effect.js' %}"></script>
 {% endblock %}

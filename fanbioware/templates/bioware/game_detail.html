@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css"  href="{% static 'slick/slick.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/game_detail.css' %}"/>
+    {% block game-css %}{% endblock %}
 {% endblock %}
 {% block content %}
     <!-- Cover start -->
@@ -135,4 +136,5 @@
 {% block js %}
     <script src="{% static 'slick/slick.min.js' %}"></script>
     <script src="{% static 'scripts/game-detail.js' %}"></script>
+    {% block js-game%}{% endblock %}
 {% endblock %}
