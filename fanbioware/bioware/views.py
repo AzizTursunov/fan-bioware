@@ -2,7 +2,7 @@ import os.path
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Count, Sum
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from fanbioware.settings import TEMPLATES_DIR
 from .models import Game, News, Studio, Opening
 
@@ -36,6 +36,12 @@ def about(request):
     return render(request, template, context)
 
 
+class AboutView(ListView):
+    model = Studio
+    template_name = 'bioware/about.html'
+    extra_context = {'title': 'About'}
+
+
 def game_list(request):
     template = 'bioware/game_list.html'
     game_list = Game.objects.all()
@@ -46,7 +52,7 @@ def game_list(request):
     return render(request, template, context)
 
 
-class GameList(ListView):
+class GamesView(ListView):
     model = Game
     template_name = 'bioware/game_list.html'
 
@@ -91,7 +97,7 @@ def careers(request):
     return render(request, template, context)
 
 
-class OpeningList(ListView):
+class CareersView(ListView):
     model = Opening
     template_name = 'bioware/careers.html'
     extra_context = {'title': 'Careers'}
@@ -105,3 +111,9 @@ def contacts(request):
         'title': 'Contacts'
     }
     return render(request, template, context)
+
+
+class ContactsView(ListView):
+    model = Studio
+    template_name = 'bioware/contacts.html'
+    extra_context = {'title': 'Contacts'}
