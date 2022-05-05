@@ -42,6 +42,8 @@
     </section>
     <!-- About end -->
     {% block game-content %}{% endblock %}
+
+    {% if news_list %}
     <!-- News start -->
     <section class="section-block news">
         <div class="wrapper">
@@ -50,6 +52,7 @@
                 <h3 class="section-caption__title">Get the latest information about {{game.title}}.</h3>
             </div>
             <ul class="news-cards">
+                {% with main_news=news_list|first %}
                 <li class="news-card news-card_main-card">
                     <div class="news-card__pic">
                         <img src="{{main_news.image.url}}" alt="main-news-pic" class="news-card__img">
@@ -61,7 +64,8 @@
                     </div>
                     <a href="#!" class="news-card__link"></a>
                 </li>
-                {% for news in news_list %}
+                {% endwith %}
+                {% for news in news_list|slice:"1:" %}
                 <li class="news-card {% if forloop.counter == 1 %} news-card_second-card {% elif forloop.counter == 2 %} news-card_third-card {% else %} news-card-last-card {% endif %}">
                     <div class="news-card__pic">
                         <img src="{{news.image.url}}" alt="news-pic-{forloop.counter+1}" class="news-card__img">
@@ -84,6 +88,7 @@
         </div>
     </section>
     <!-- News end -->
+    {% endif %}
     <!-- Join-us start -->
     <section class="section-block" id="buynow">
         <div class="wrapper">
