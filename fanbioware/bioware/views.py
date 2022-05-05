@@ -50,18 +50,18 @@ def game_detail(request, game_slug):
     if os.path.isfile(template_path):
         template = f'bioware/{game_slug}.html'
     else:
-        raise Http404
-    game_title = ' '.join(game_slug.split('-'))
-    game = get_object_or_404(Game, slug=game_slug)
+        raise Http404()
+    game = get_object_or_404(
+        Game.objects.prefetch_related('news'),
+        slug=game_slug
+    )
+    game_title = game.title
     next_game = Game.objects.exclude(id=game.id).last()
-    news = News.objects.filter(game=game)[:4]
-    main_news = news.first()
-    news_list = news[1:]
+    news_list = game.news.all()[:]
     context = {
         'title': game_title,
         'game': game,
         'next_game': next_game,
-        'main_news': main_news,
         'news_list': news_list,
     }
     return render(request, template, context)
