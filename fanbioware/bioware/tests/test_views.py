@@ -35,7 +35,7 @@ class BiowareViewsTest(TestCase):
                 Game(
                     pk=i,
                     title=f'Test game #{i}',
-                    slug=f'Test game slug #{i}',
+                    slug=f'test-game-slug-{i}',
                     description=f'Test game desc #{i}.',
                     image=cls.uploaded,
                     rel_date='2020-02-02',
@@ -118,20 +118,21 @@ class BiowareViewsTest(TestCase):
     def test_index_page_show_correct_context(self):
         """Checking context passed to the index page."""
         response = self.guest_client.get(reverse('bioware:index'))
+        response_game_list = response.context['game_list']
         self.assertEqual(
-            list(response.context['game_list']),
+            list(response_game_list),
             self.game_list
         )
         self.assertEqual(
-            response.context['game_list'].first().title,
+            response_game_list.first().title,
             self.games.first().title
         )
         self.assertEqual(
-            response.context['news_list'].first().title,
+            response_game_list.first().news.first().title,
             self.news.first().title
         )
-        self.assertTrue(response.context['game_list'].first().image)
-        self.assertTrue(response.context['news_list'].first().image)
+        self.assertTrue(response_game_list.first().image)
+        self.assertTrue(response_game_list.first().news.first().image)
 
     def test_games_page_show_correct_context(self):
         """Checking context passed to the games page."""
@@ -163,5 +164,5 @@ class BiowareViewsTest(TestCase):
     def test_careers_page_show_correct_context(self):
         """Checking context passed to the careers page."""
         response = self.guest_client.get(reverse('bioware:careers'))
-        studio = response.context['studio_list'].first()
-        self.assertIn(studio, (self.studio_edmont, self.studio_austin))
+        studio = response.context['opening_list'].first()
+        self.assertIn(studio, (self.opening_edmont, self.opening_austin))
