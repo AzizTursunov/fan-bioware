@@ -39,6 +39,7 @@ class BiowareViewsTest(TestCase):
                     description=f'Test game desc #{i}.',
                     image=cls.uploaded,
                     rel_date='2020-02-02',
+                    is_released=True
                 )
             )
         Game.objects.bulk_create(cls.game_list)
