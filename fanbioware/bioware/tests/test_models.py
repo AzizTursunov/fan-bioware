@@ -89,7 +89,7 @@ class GameModelTest(ModelFixtures, TestHelpTextMixin,
         }
 
         cls.field_and_max_len = {
-            'description': 650
+            'intro': 650
         }
 
     def test_game_str_method(self):

@@ -1,10 +1,11 @@
+import os
 import shutil
 import tempfile
 from django.urls import reverse
 from django.test import Client, TestCase, override_settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
-from fanbioware.utils import BIOWARE_REVERSE_URL_VS_TEMPLATE, NEWS_ON_PAGE
+from fanbioware.utils import BIOWARE_REVERSE_URL_VS_TEMPLATE, NEWS_ON_PAGE, create_test_template
 from ..models import Game, News, Opening, Studio
 
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
@@ -35,14 +36,27 @@ class BiowareViewsTest(TestCase):
                 Game(
                     pk=i,
                     title=f'Test game #{i}',
-                    slug=f'Test game slug #{i}',
+                    slug=f'test-game-slug-{i}',
                     description=f'Test game desc #{i}.',
                     image=cls.uploaded,
                     rel_date='2020-02-02',
+                    is_released=True
                 )
             )
         Game.objects.bulk_create(cls.game_list)
+        cls.game_mass_effect = Game.objects.create(
+            title='Mass Effect',
+            slug='mass-effect',
+            description=f'Test game desc.',
+            image=cls.uploaded,
+            rel_date='2020-02-02',
+            is_released=True
+        )
+        cls.game_list.append(cls.game_mass_effect)
         cls.games = Game.objects.all()
+        cls.template_name = create_test_template(
+            cls.game_mass_effect.slug
+        )
         cls.news_list = []
         for i in range(NEWS_ON_PAGE):
             cls.news_list.append(
@@ -103,6 +117,7 @@ class BiowareViewsTest(TestCase):
     def tearDownClass(cls):
         super().tearDownClass()
         shutil.rmtree(TEMP_MEDIA_ROOT, ignore_errors=True)
+        os.remove(cls.template_name)
 
     def setUp(self):
         self.guest_client = Client()
@@ -118,20 +133,21 @@ class BiowareViewsTest(TestCase):
     def test_index_page_show_correct_context(self):
         """Checking context passed to the index page."""
         response = self.guest_client.get(reverse('bioware:index'))
+        response_game_list = response.context['game_list']
         self.assertEqual(
-            list(response.context['game_list']),
+            list(response_game_list),
             self.game_list
         )
         self.assertEqual(
-            response.context['game_list'].first().title,
+            response_game_list.first().title,
             self.games.first().title
         )
         self.assertEqual(
-            response.context['news_list'].first().title,
+            response_game_list.first().news.first().title,
             self.news.first().title
         )
-        self.assertTrue(response.context['game_list'].first().image)
-        self.assertTrue(response.context['news_list'].first().image)
+        self.assertTrue(response_game_list.first().image)
+        self.assertTrue(response_game_list.first().news.first().image)
 
     def test_games_page_show_correct_context(self):
         """Checking context passed to the games page."""
@@ -163,5 +179,5 @@ class BiowareViewsTest(TestCase):
     def test_careers_page_show_correct_context(self):
         """Checking context passed to the careers page."""
         response = self.guest_client.get(reverse('bioware:careers'))
-        studio = response.context['studio_list'].first()
-        self.assertIn(studio, (self.studio_edmont, self.studio_austin))
+        studio = response.context['opening_list'].first()
+        self.assertIn(studio, (self.opening_edmont, self.opening_austin))
