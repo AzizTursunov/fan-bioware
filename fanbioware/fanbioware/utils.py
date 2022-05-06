@@ -1,4 +1,6 @@
+import os
 from django.urls import reverse
+from django.conf import settings
 
 NEWS_ON_PAGE = 4
 
@@ -6,7 +8,7 @@ BIOWARE_URL_VS_TEMPLATE = {
     '/': 'bioware/index.html',
     '/about/': 'bioware/about.html',
     '/games/': 'bioware/games.html',
-    '/games/mass_effect/': 'bioware/mass_effect.html',
+    '/games/mass-effect/': 'bioware/mass-effect.html',
     '/careers/': 'bioware/careers.html',
     '/contacts/': 'bioware/contacts.html'
 }
@@ -16,8 +18,8 @@ BIOWARE_REVERSE_URL_VS_TEMPLATE = {
     reverse('bioware:about'): 'bioware/about.html',
     reverse('bioware:game_list'): 'bioware/games.html',
     reverse(
-        'bioware:game_detail', args=('mass_effect',)
-        ): 'bioware/mass_effect.html',
+        'bioware:game_detail', args=('mass-effect',)
+        ): 'bioware/mass-effect.html',
     reverse('bioware:careers'): 'bioware/careers.html',
     reverse('bioware:contacts'): 'bioware/contacts.html'
 }
@@ -69,3 +71,15 @@ class TestFiedlMaxLengthMixin:
         run_field_parameter_test(
             instance, self, self.field_and_max_len, 'max_length'
         )
+
+
+def create_test_template(slug, template_dir=settings.TEMPLATES_DIR):
+    file_path = os.path.join(
+        template_dir,
+        os.path.join(
+            'bioware',
+            f'{slug}.html'
+        )
+    )
+    open(file_path, 'w').close()
+    return file_path
