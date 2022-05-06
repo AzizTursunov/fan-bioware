@@ -1,7 +1,5 @@
 import os.path
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render
-from django.db.models import Count, Sum
 from django.views.generic import ListView, DetailView, TemplateView
 from fanbioware.settings import TEMPLATES_DIR
 from .models import Game, News, Studio, Opening
