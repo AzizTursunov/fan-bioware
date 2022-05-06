@@ -8,18 +8,16 @@ from .models import Game, News, Studio, Opening
 
 def index(request):
     template = 'bioware/index.html'
-    game_list = Game.objects.all()
+    game_list = Game.objects.filter(is_released=True)
     news_list = News.objects.filter(is_publicated=True)[:4]
-    openings = Opening.objects.values('team').annotate(
-        roles_count=Count('role')
-    )
-    teams_count = openings.count()
-    roles_count = openings.aggregate(Sum('roles_count'))
+    openings = Opening.objects.all()
+    roles_count = openings.count()
+    teams_count = len(set([opening.team for opening in openings]))
     context = {
         'game_list': game_list,
         'news_list': news_list,
         'teams_count': teams_count,
-        'roles_count': roles_count.get('roles_count__sum', 0),
+        'roles_count': roles_count,
         'title': 'Bioware'
     }
     return render(request, template, context)
