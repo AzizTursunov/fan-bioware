@@ -1,10 +1,11 @@
+import os
 import shutil
 import tempfile
 from django.urls import reverse
 from django.test import Client, TestCase, override_settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
-from fanbioware.utils import BIOWARE_REVERSE_URL_VS_TEMPLATE, NEWS_ON_PAGE
+from fanbioware.utils import BIOWARE_REVERSE_URL_VS_TEMPLATE, NEWS_ON_PAGE, create_test_template
 from ..models import Game, News, Opening, Studio
 
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
@@ -43,7 +44,19 @@ class BiowareViewsTest(TestCase):
                 )
             )
         Game.objects.bulk_create(cls.game_list)
+        cls.game_mass_effect = Game.objects.create(
+            title='Mass Effect',
+            slug='mass-effect',
+            description=f'Test game desc.',
+            image=cls.uploaded,
+            rel_date='2020-02-02',
+            is_released=True
+        )
+        cls.game_list.append(cls.game_mass_effect)
         cls.games = Game.objects.all()
+        cls.template_name = create_test_template(
+            cls.game_mass_effect.slug
+        )
         cls.news_list = []
         for i in range(NEWS_ON_PAGE):
             cls.news_list.append(
@@ -104,6 +117,7 @@ class BiowareViewsTest(TestCase):
     def tearDownClass(cls):
         super().tearDownClass()
         shutil.rmtree(TEMP_MEDIA_ROOT, ignore_errors=True)
+        os.remove(cls.template_name)
 
     def setUp(self):
         self.guest_client = Client()
