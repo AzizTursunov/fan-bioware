@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}{{title|title}}{% endblock %}
+{% block title %}{{title|join:" "|title}}{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css"  href="{% static 'slick/slick.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}"/>
@@ -43,7 +43,7 @@
     <!-- About end -->
     {% block game-content %}{% endblock %}
 
-    {% if news_list %}
+    {% if game.news.all %}
     <!-- News start -->
     <section class="section-block news">
         <div class="wrapper">
@@ -55,17 +55,16 @@
                 {% with main_news=news_list|first %}
                 <li class="news-card news-card_main-card">
                     <div class="news-card__pic">
-                        <img src="{{main_news.image.url}}" alt="main-news-pic" class="news-card__img">
+                        <img src="{{game.news.first.image.url}}" alt="main-news-pic" class="news-card__img">
                     </div>
                     <div class="news-card__desc">
-                        <h6 class="news-card__date">{{main_news.pub_date}}</h6>
-                        <h5 class="news-card__title">{{main_news.title}}</h5>
-                        <p class="news-card__text">{{main_news.intro}}</p>
+                        <h6 class="news-card__date">{{game.news.first.pub_date}}</h6>
+                        <h5 class="news-card__title">{{game.news.first.title}}</h5>
+                        <p class="news-card__text">{{game.news.first.intro}}</p>
                     </div>
                     <a href="#!" class="news-card__link"></a>
                 </li>
-                {% endwith %}
-                {% for news in news_list|slice:"1:" %}
+                {% for news in game.news.all|slice:"1:" %}
                 <li class="news-card {% if forloop.counter == 1 %} news-card_second-card {% elif forloop.counter == 2 %} news-card_third-card {% else %} news-card-last-card {% endif %}">
                     <div class="news-card__pic">
                         <img src="{{news.image.url}}" alt="news-pic-{forloop.counter+1}" class="news-card__img">

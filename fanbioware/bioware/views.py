@@ -1,84 +1,81 @@
 import os.path
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render
+from django.views.generic import ListView, DetailView, TemplateView
 from fanbioware.settings import TEMPLATES_DIR
 from .models import Game, News, Studio, Opening
 
 
-def index(request):
-    template = 'bioware/index.html'
-    game_list = Game.objects.filter(is_released=True)
-    news_list = News.objects.filter(is_publicated=True)[:4]
-    openings = Opening.objects.all()
-    roles_count = openings.count()
-    teams_count = len(set([opening.team for opening in openings]))
-    context = {
-        'game_list': game_list,
-        'news_list': news_list,
-        'teams_count': teams_count,
-        'roles_count': roles_count,
-        'title': 'Bioware'
-    }
-    return render(request, template, context)
+class IndexView(TemplateView):
+    template_name = 'bioware/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['game_list'] = Game.objects.filter(is_released=True)
+        context['news_list'] = News.objects.filter(is_publicated=True)[:4]
+        openings = Opening.objects.all()
+        context['roles_count'] = openings.count()
+        context['teams_count'] = len(
+            set([opening.team for opening in openings])
+        )
+        context['title'] = 'Bioware'
+        return context
 
 
-def about(request):
-    template = 'bioware/about.html'
-    studio_list = Studio.objects.all()
-    context = {
-        'studio_list': studio_list,
-        'title': 'About'
-    }
-    return render(request, template, context)
+class AboutView(ListView):
+    model = Studio
+    template_name = 'bioware/about.html'
+    extra_context = {'title': 'About'}
 
 
-def game_list(request):
-    template = 'bioware/games.html'
-    game_list = Game.objects.all()
-    context = {
-        'game_list': game_list,
-        'title': 'Our games'
-    }
-    return render(request, template, context)
+class GamesView(ListView):
+    model = Game
+    template_name = 'bioware/game_list.html'
+
+    def get_queryset(self):
+        return Game.objects.filter(is_released=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Our games'
+        return context
 
 
-def game_detail(request, game_slug):
-    template_path = os.path.join(TEMPLATES_DIR, f'bioware/{game_slug}.html')
-    if os.path.isfile(template_path):
-        template = f'bioware/{game_slug}.html'
-    else:
-        raise Http404()
-    game = get_object_or_404(
-        Game.objects.prefetch_related('news'),
-        slug=game_slug
-    )
-    game_title = game.title
-    next_game = Game.objects.exclude(id=game.id).last()
-    news_list = game.news.all()[:]
-    context = {
-        'title': game_title,
-        'game': game,
-        'next_game': next_game,
-        'news_list': news_list,
-    }
-    return render(request, template, context)
+class GameDetailView(DetailView):
+    model = Game
+    slug_url_kwarg = 'game_slug'
+    allow_empty = False
+
+    def get_queryset(self):
+        return super(
+            GameDetailView,
+            self
+        ).get_queryset().prefetch_related('news')
+
+    def get_template_names(self):
+        templates = []
+        template_path = os.path.join(
+            TEMPLATES_DIR, f'bioware/{self.object.slug}.html'
+        )
+        if not os.path.isfile(template_path):
+            raise Http404
+        templates.append(f'bioware/{self.object.slug}.html')
+        return templates
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        next_game = Game.objects.exclude(id=self.object.id).last()
+        context['title'] = self.object.slug.split('-')
+        context['next_game'] = next_game
+        return context
 
 
-def careers(request):
-    template = 'bioware/careers.html'
-    opening_list = Opening.objects.all()
-    context = {
-        'opening_list': opening_list,
-        'title': 'Careers'
-    }
-    return render(request, template, context)
+class CareersView(ListView):
+    model = Opening
+    template_name = 'bioware/careers.html'
+    extra_context = {'title': 'Careers'}
 
 
-def contacts(request):
-    template = 'bioware/contacts.html'
-    studio_list = Studio.objects.all()
-    context = {
-        'studio_list': studio_list,
-        'title': 'Contacts'
-    }
-    return render(request, template, context)
+class ContactsView(ListView):
+    model = Studio
+    template_name = 'bioware/contacts.html'
+    extra_context = {'title': 'Contacts'}
