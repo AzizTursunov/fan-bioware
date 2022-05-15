@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Page not found{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/errors.css' %}"/>
+{% endblock %}
+{% block content %}
+    <!-- Cover start -->
+    <section class="section-block cover">
+        <div class="wrapper">
+            <div class="cover">
+                <h1 class="cover__code">
+                    {{code}}
+                </h1>
+                <h1 class="cover__error">
+                    error
+                </h1>
+                <p class="cover__desc">
+                    {{message}}
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- Cover end -->
+    <div class="wrapper">
+        <a href="{% url 'bioware:index' %}" class="go-to-other-page">
+            Go to home page
+            <img src="{% static 'img/svg/link-arrow-lg.svg' %}" alt="btn-arrow" class="go-to-other-page__arrow">
+        </a>
+    </div>
+{% endblock %}
