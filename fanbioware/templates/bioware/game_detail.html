@@ -64,6 +64,7 @@
                     </div>
                     <a href="#!" class="news-card__link"></a>
                 </li>
+                {% endwith %}
                 {% for news in game.news.all|slice:"1:" %}
                 <li class="news-card {% if forloop.counter == 1 %} news-card_second-card {% elif forloop.counter == 2 %} news-card_third-card {% else %} news-card-last-card {% endif %}">
                     <div class="news-card__pic">
