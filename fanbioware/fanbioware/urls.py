@@ -6,12 +6,13 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('bioware.urls', namespace='bioware')),
+    path('', include('news.urls', namespace='news'))
 ]
 
 handler404 = 'core.views.page_not_found'
 handler500 = 'core.views.server_error'
 
-if settings.DEBUG is True:
+if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT
