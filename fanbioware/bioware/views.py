@@ -2,7 +2,8 @@ import os.path
 from django.http import Http404
 from django.views.generic import ListView, DetailView, TemplateView
 from fanbioware.settings import TEMPLATES_DIR
-from .models import Game, News, Studio, Opening
+from .models import Game, Studio, Opening
+from news.models import News
 
 
 class IndexView(TemplateView):

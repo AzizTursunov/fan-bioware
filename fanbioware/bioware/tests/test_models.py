@@ -5,7 +5,8 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
 from fanbioware.utils import (TestHelpTextMixin, TestVerboseNameMixin,
                               TestFiedlMaxLengthMixin)
-from ..models import Game, News, Opening, Studio
+from bioware.models import Game, Opening, Studio
+from news.models import News
 
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 

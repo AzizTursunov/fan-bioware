@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Game, News, Studio, Opening, GameSliderImage, StudioSliderImage
-
+from bioware.models import Game, Studio, Opening, GameSliderImage, StudioSliderImage
+from news.models import News
 
 class GameSliderImageInline(admin.TabularInline):
     model = GameSliderImage
