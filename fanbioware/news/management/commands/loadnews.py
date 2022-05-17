@@ -2,7 +2,7 @@ import os
 from csv import DictReader
 from django.core.management import BaseCommand
 from django.core.files.uploadedfile import SimpleUploadedFile
-from bioware.models import News
+from news.models import News
 from fanbioware.settings import DATA_DIR
 
 
