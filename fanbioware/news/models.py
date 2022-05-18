@@ -1,5 +1,6 @@
 from datetime import date
 from django.db import models
+from django.urls import reverse
 from bioware.models import Game
 
 
@@ -42,3 +43,14 @@ class News(models.Model):
     def __str__(self):
         """Return the title of the News."""
         return self.title
+
+    def get_absolute_url(self):
+        """Return the url to the news page."""
+        if self.game:
+            slug = self.game.slug
+        else:
+            slug = 'bioware'
+        return reverse(
+            'news:news_detail',
+            kwargs={'game_slug': slug, 'news_pk': self.pk}
+        )
