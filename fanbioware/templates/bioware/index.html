@@ -169,7 +169,7 @@
                 {% for news in news_list %}
                 <!--{% if news.is_publicated %}-->
                 <li class="news-card">
-                    <a href="#!" class="news-card__link"></a>
+                    <a href="{{news.get_absolute_url}}" class="news-card__link"></a>
                     <div class="news-card__picture">
                         <img src="{{news.image.url}}" alt="news_image1" class="news-card__img">
                     </div>

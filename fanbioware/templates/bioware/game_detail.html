@@ -62,7 +62,7 @@
                         <h5 class="news-card__title">{{game.news.first.title}}</h5>
                         <p class="news-card__text">{{game.news.first.intro}}</p>
                     </div>
-                    <a href="#!" class="news-card__link"></a>
+                    <a href="{{game.news.first.get_absolute_url}}" class="news-card__link"></a>
                 </li>
                 {% endwith %}
                 {% for news in game.news.all|slice:"1:" %}
@@ -75,7 +75,7 @@
                         <h5 class="news-card__title">{{news.title}}</h5>
                         <p class="news-card__text">{{news.intro}}</p>
                     </div>
-                    <a href="#!" class="news-card__link"></a>
+                    <a href="{{news.get_absolute_url}}" class="news-card__link"></a>
                 </li>
                 {% endfor %}
             </ul>
