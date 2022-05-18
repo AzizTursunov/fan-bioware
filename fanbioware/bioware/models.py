@@ -19,14 +19,14 @@ class Game(models.Model):
     class Genres(models.TextChoices):
         """Creating genre choise to Game model."""
 
-        ACTION = 'AC', 'Action'
-        ADVENTURE = 'ADV', 'Adventure'
-        FIGHTING = 'F', 'Fighting'
-        PLATFORM = 'P', 'Platform'
+        ACTION = 'Action', 'Action'
+        ADVENTURE = 'Adventure', 'Adventure'
+        FIGHTING = 'Fighting', 'Fighting'
+        PLATFORM = 'Platform', 'Platform'
         RPG = 'RPG', 'RPG'
-        SHOOTER = 'SH', 'Shooter'
-        SIMULATION = 'SIM', 'Simulation'
-        STRATEGY = 'STR', 'Strategy'
+        SHOOTER = 'Shooter', 'Shooter'
+        SIMULATION = 'Simulation', 'Simulation'
+        STRATEGY = 'Strategy', 'Strategy'
 
     title = models.CharField(
         max_length=255,
@@ -176,10 +176,15 @@ class Opening(models.Model):
         verbose_name='Perks',
         help_text='Describe the perks separated by semicolons'
     )
+    is_opened = models.BooleanField(
+        default=True,
+        verbose_name='Is opened'
+    )
 
     class Meta:
         verbose_name = 'Job opening'
         verbose_name_plural = 'Job openings'
+        ordering = ['id']
 
     def __str__(self):
         """Return the role of the Opening."""
@@ -231,6 +236,7 @@ class Studio(models.Model):
     class Meta:
         verbose_name = 'Studio'
         verbose_name_plural = 'Studois'
+        ordering = ['id']
 
     def __str__(self):
         """Return the location of the Game."""
