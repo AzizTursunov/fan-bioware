@@ -15,10 +15,13 @@ class NewsAdmin(admin.ModelAdmin):
     list_filter = ('game', )
     readonly_fields = ('get_html_photo',)
     save_on_top = True
+    empty_value_display = 'Bioware'
 
     def get_html_photo(self, object):
         """"Return img html tag with image url"""
-        return format_html(f'<img src="{object.image.url}" width=100 height=70>')
+        return format_html(
+            f'<img src="{object.image.url}" width=100 height=70>'
+        )
 
     get_html_photo.short_description = 'Cover image'
 
