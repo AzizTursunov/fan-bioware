@@ -246,7 +246,7 @@ class Studio(models.Model):
 class GameSliderImage(models.Model):
     game = models.ForeignKey(
         Game,
-        related_name='Slide',
+        related_name='slider',
         null=True, blank=None,
         on_delete=models.CASCADE
     )
@@ -260,7 +260,7 @@ class GameSliderImage(models.Model):
 class StudioSliderImage(models.Model):
     studio = models.ForeignKey(
         Studio,
-        related_name='Slide',
+        related_name='slider',
         null=True, blank=None,
         on_delete=models.CASCADE
     )
