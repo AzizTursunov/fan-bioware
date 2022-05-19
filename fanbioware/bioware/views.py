@@ -12,7 +12,9 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['game_list'] = Game.objects.filter(is_released=True)
-        context['news_list'] = News.objects.filter(is_publicated=True)[:4]
+        context['news_list'] = News.objects.filter(
+            is_publicated=True
+        )[:4].select_related('game')
         openings = Opening.objects.all()
         context['roles_count'] = openings.count()
         context['teams_count'] = len(
@@ -50,7 +52,7 @@ class GameDetailView(DetailView):
         return super(
             GameDetailView,
             self
-        ).get_queryset().prefetch_related('news')
+        ).get_queryset().prefetch_related('news', 'slider')
 
     def get_template_names(self):
         templates = []
@@ -75,8 +77,14 @@ class CareersView(ListView):
     template_name = 'bioware/careers.html'
     extra_context = {'title': 'Careers'}
 
+    def get_queryset(self):
+        return Opening.objects.select_related('studio').all()
+
 
 class ContactsView(ListView):
     model = Studio
     template_name = 'bioware/contacts.html'
     extra_context = {'title': 'Contacts'}
+
+    def get_queryset(self):
+        return Studio.objects.prefetch_related('slider').all()
