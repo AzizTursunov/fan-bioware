@@ -35,7 +35,7 @@
                     <a href="#!" class="studios-card__email">{{studio.email}}</a>
                 </div>
                 <div class="slider">
-                    {% for slide in studio.Slide.all %}
+                    {% for slide in studio.slider.all %}
                     <div><img src="{{slide.image.url}}"></div>
                     {% endfor %}
                 </div>

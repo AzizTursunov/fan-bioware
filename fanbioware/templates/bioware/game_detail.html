@@ -29,11 +29,13 @@
                     </div>
                     </div>
                 </div>
+            {% if game.slider %}
             <div class="slider">
-                {% for slide in game.Slide.all %}
+                {% for slide in game.slider.all %}
                 <div><img src="{{slide.image.url}}"></div>
                 {% endfor %}
             </div>
+            {% endif %}
             <a href="#!" class="section-more-btn about__more">
                 Watch the trailer
                 <img src="{% static 'img/svg/link-arrow.svg' %}" alt="" class="section-more-btn__arrow">
