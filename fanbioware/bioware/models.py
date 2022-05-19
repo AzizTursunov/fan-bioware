@@ -184,7 +184,7 @@ class Opening(models.Model):
     class Meta:
         verbose_name = 'Job opening'
         verbose_name_plural = 'Job openings'
-        ordering = ['id']
+        ordering = ['studio', 'id']
 
     def __str__(self):
         """Return the role of the Opening."""
